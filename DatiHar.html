@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisi Dinamica Utenti Naga Har (2002-2025)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 500px;
+        }
+        .small-chart-container {
+             position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        .stat-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            text-align: center;
+            border-left: 5px solid #3b82f6;
+        }
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            line-height: 1;
+            color: #3b82f6;
+        }
+        .stat-label {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #4b5563;
+            margin-top: 0.5rem;
+        }
+        h2 {
+            font-size: 2.25rem;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 0.75rem;
+            color: #111827;
+        }
+        h3 {
+           font-size: 1.5rem;
+           font-weight: 700;
+           text-align: center;
+           margin-bottom: 1rem;
+           color: #1f2937;
+        }
+        h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            text-align: center;
+            margin: 2rem 0 1rem 0;
+            color: #1e40af;
+            border-bottom: 2px solid #dbeafe;
+            padding-bottom: 0.5rem;
+        }
+        .section-intro {
+            text-align: center;
+            color: #4b5563;
+            max-width: 48rem;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 2.5rem;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <header class="bg-white shadow-md sticky top-0 z-10">
+        <div class="container mx-auto px-6 py-4">
+            <h1 class="text-3xl font-bold text-gray-900">Naga Har: Analisi Dinamica 2002-2025</h1>
+            <p class="text-lg text-gray-600">Un'analisi temporale per comprendere l'evoluzione dei flussi e dei profili degli utenti.</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-6 space-y-16">
+        
+        <section id="panoramica">
+            <p class="section-intro text-xl">Questa analisi esplora oltre due decenni di dati del centro Naga Har, non solo per definire chi sono gli utenti oggi, ma per capire come i loro profili, le loro provenienze e le loro sfide si sono trasformati nel tempo.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="stat-card">
+                    <div class="stat-number">17,522</div>
+                    <div class="stat-label">Primi Accessi Totali</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">30.4</div>
+                    <div class="stat-label">Età Media Complessiva</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">73.6%</div>
+                    <div class="stat-label">Tasso di Disoccupazione Aggregato</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="flussi">
+            <h2>Capitolo 1: Dinamiche dei Flussi</h2>
+            <p class="section-intro">I flussi di accesso al centro sono lo specchio di un mondo in movimento. L'analisi anno per anno rivela l'impatto di eventi globali, dalle crisi internazionali alla pandemia, delineando un quadro di arrivi in costante e crescente evoluzione.</p>
+            <div class="card">
+                <h3>Andamento Primi Accessi e Età Media (2002-2025)</h3>
+                <div class="chart-container">
+                    <canvas id="accessiEtaChart"></canvas>
+                </div>
+                <p class="text-sm text-gray-600 mt-4 text-center">Il grafico combina l'aumento esponenziale degli accessi (barre blu), con picchi post-2015, e il progressivo innalzamento dell'età media (linea verde). Questo suggerisce che i percorsi migratori recenti sono non solo più intensi, ma coinvolgono persone mediamente più adulte rispetto al passato.</p>
+            </div>
+        </section>
+
+        <section id="demografia">
+            <h2>Capitolo 2: L'Evoluzione del Profilo Demografico</h2>
+            <p class="section-intro">Il profilo demografico non è statico. Sebbene alcune caratteristiche, come la prevalenza maschile, rimangano costanti, altre, come la composizione per età, mostrano cambiamenti significativi che riflettono nuove dinamiche sociali e migratorie.</p>
+            
+            <h4>Il Profilo Aggregato</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card"><h3>Genere</h3><div class="small-chart-container"><canvas id="genereChart"></canvas></div><p class="text-sm text-gray-600 mt-4">La netta prevalenza maschile (88.7%) è una costante storica.</p></div>
+                <div class="card"><h3>Età</h3><div class="small-chart-container"><canvas id="etaChart"></canvas></div><p class="text-sm text-gray-600 mt-4">Oltre il 60% degli utenti ha tra i 18 e i 30 anni.</p></div>
+                <div class="card"><h3>Stato Civile</h3><div class="small-chart-container"><canvas id="statoCivileChart"></canvas></div><p class="text-sm text-gray-600 mt-4">Il 69.2% si dichiara celibe/nubile, indicando progetti migratori individuali.</p></div>
+            </div>
+
+            <h4>Come è Cambiato il Profilo nel Tempo?</h4>
+            <div class="card mt-12">
+                <h3>Evoluzione delle Fasce d'Età (% sul totale annuo)</h3>
+                <div class="chart-container">
+                    <canvas id="etaEvoluzioneChart"></canvas>
+                </div>
+                <p class="text-sm text-gray-600 mt-4 text-center">Questo grafico mostra come la composizione per età sia cambiata. Si nota una progressiva riduzione della quota di giovanissimi (18-30, in blu) e un corrispettivo aumento della fascia 31-45 anni (in verde) negli anni più recenti. La popolazione che arriva sta diventando mediamente più matura.</p>
+            </div>
+        </section>
+
+        <section id="origini-status">
+            <h2>Capitolo 3: Le Ondate Migratorie e lo Status Giuridico</h2>
+            <p class="section-intro">Le nazionalità degli utenti sono la cartina di tornasole delle crisi geopolitiche mondiali. L'analisi temporale mostra chiaramente l'alternarsi di diverse "ondate" migratorie, ognuna con le sue specificità e necessità in termini di protezione legale.</p>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                 <div class="card">
+                    <h3>Principali 10 Nazionalità (Aggregato 2002-2025)</h3>
+                    <div class="small-chart-container h-96">
+                        <canvas id="nazionalitaChart"></canvas>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Status Giuridico (Aggregato 2002-2025)</h3>
+                    <div class="small-chart-container h-96">
+                        <canvas id="statusGiuridicoChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <h4>L'Evoluzione delle Provenienze</h4>
+             <div class="card mt-12">
+                <h3>Flussi delle Principali Nazionalità per Anno (valori assoluti)</h3>
+                <div class="chart-container">
+                    <canvas id="nazionalitaEvoluzioneChart"></canvas>
+                </div>
+                <p class="text-sm text-gray-600 mt-4 text-center">Questo grafico è cruciale: visualizza le ondate migratorie. Si osserva l'ondata dall'America Latina (El Salvador, Perù) nei primi anni 2000, seguita da quella del Corno d'Africa (Eritrea) e poi, in modo massiccio dal 2014-15, dall'Africa Occidentale (Nigeria, Gambia, Mali) e dall'Asia (Pakistan, Bangladesh, Egitto).</p>
+            </div>
+        </section>
+
+        <section id="capitale-umano">
+            <h2>Capitolo 4: Il Capitale Umano e le Sue Trasformazioni</h2>
+            <p class="section-intro">Le persone migranti portano con sé un bagaglio di conoscenze e competenze. L'analisi temporale del loro livello di istruzione rivela un trend interessante di progressivo innalzamento, indicando un capitale umano sempre più qualificato che si affaccia in Italia.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card">
+                    <h3>Livello di Scolarità (Aggregato)</h3>
+                     <div class="small-chart-container">
+                        <canvas id="scolaritaChart"></canvas>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-4">Complessivamente, il 63% ha un'istruzione di livello medio-basso, ma la quota di laureati (8.5%) è significativa.</p>
+                </div>
+                <div class="card">
+                    <h3>Evoluzione Livello di Scolarità (% sul totale annuo)</h3>
+                     <div class="small-chart-container">
+                        <canvas id="scolaritaEvoluzioneChart"></canvas>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-4">Si nota una tendenza positiva: la quota di persone con istruzione superiore (laurea e medie superiori, in blu e verde) è aumentata nel tempo, mentre la percentuale di analfabeti (in rosso) è in calo, specialmente nell'ultimo decennio.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="focus-disoccupazione">
+            <h2>Capitolo 5: La Sfida Costante della Disoccupazione</h2>
+            <p class="section-intro">La disoccupazione rimane l'ostacolo più grande all'integrazione. Nonostante il miglioramento del capitale umano, il numero di persone senza lavoro si mantiene drammaticamente alto, evidenziando le barriere strutturali del mercato del lavoro italiano.</p>
+            
+            <div class="card">
+                <h3>Andamento dei Primi Accessi e del Numero di Disoccupati</h3>
+                <div class="chart-container">
+                    <canvas id="disoccupazioneEvoluzioneChart"></canvas>
+                </div>
+                <p class="text-sm text-gray-600 mt-4 text-center">Questo grafico confronta i nuovi accessi (barre blu) con il numero totale di utenti seguiti che risultano disoccupati (linea rossa). Il fatto che la linea rossa spesso superi l'altezza delle barre indica che la disoccupazione è un problema persistente, che non riguarda solo i nuovi arrivati ma anche chi si trova in Italia da più tempo.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-900 text-white mt-12">
+        <div class="container mx-auto px-6 py-4 text-center">
+            <p>Report generato sull'analisi dei dati di afflusso al Centro Naga Har, 2002-2025.</p>
+            <p class="text-sm text-gray-400">Visualizzazione a scopo illustrativo.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const FONT_COLOR = '#1f2937';
+            const GRID_COLOR = '#e5e7eb';
+            const CHART_COLORS = ['#3b82f6', '#10b981', '#ef4444', '#f97316', '#8b5cf6', '#ec4899', '#64748b', '#f59e0b', '#34d399', '#a78bfa'];
+            const YEARS = Array.from({ length: 24 }, (_, i) => 2002 + i);
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) return label.join(' ');
+                return label;
+            };
+
+            const defaultBarOptions = (indexAxis = 'x', stacked = false) => ({
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: indexAxis,
+                plugins: {
+                    legend: { labels: { color: FONT_COLOR } },
+                    tooltip: { callbacks: { title: tooltipTitleCallback } }
+                },
+                scales: {
+                    x: { ticks: { color: FONT_COLOR }, grid: { color: GRID_COLOR }, stacked },
+                    y: { ticks: { color: FONT_COLOR }, grid: { color: GRID_COLOR }, stacked }
+                }
+            });
+
+            const defaultPieOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'top', labels: { color: FONT_COLOR } },
+                    tooltip: { callbacks: { title: tooltipTitleCallback } }
+                }
+            };
+
+            // CAP 1: FLUSSI
+            const accessiData = [297, 648, 385, 417, 562, 503, 453, 622, 521, 611, 504, 566, 506, 860, 1089, 1187, 854, 818, 316, 481, 752, 1339, 1717, 1453];
+            const etaMediaData = [29.1, 27.95, 28.17, 27.06, 27.68, 27.08, 27.91, 27.8, 28.21, 28.11, 28.19, 29.22, 28.48, 28.31, 28.14, 29.42, 29.21, 31.1, 32.23, 33.48, 32.76, 33.59, 34.41, 34.6];
+            new Chart(document.getElementById('accessiEtaChart'), {
+                type: 'bar',
+                data: {
+                    labels: YEARS,
+                    datasets: [
+                        { type: 'line', label: 'Età Media', data: etaMediaData, borderColor: CHART_COLORS[1], yAxisID: 'y1', tension: 0.3, fill: false },
+                        { type: 'bar', label: 'Primi Accessi', data: accessiData, backgroundColor: CHART_COLORS[0] + 'aa', yAxisID: 'y' }
+                    ]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { position: 'top' }, tooltip: { mode: 'index', intersect: false } },
+                    scales: {
+                        y: { type: 'linear', display: true, position: 'left', title: { display: true, text: 'Numero Accessi' } },
+                        y1: { type: 'linear', display: true, position: 'right', grid: { drawOnChartArea: false }, title: { display: true, text: 'Età Media' } }
+                    }
+                }
+            });
+
+            // CAP 2: DEMOGRAFIA
+            new Chart(document.getElementById('genereChart'), { type: 'doughnut', data: { labels: ['Uomini', 'Donne'], datasets: [{ data: [15545, 1976], backgroundColor: [CHART_COLORS[0], CHART_COLORS[5]] }] }, options: defaultPieOptions });
+            new Chart(document.getElementById('etaChart'), { type: 'bar', data: { labels: ['0-17', '18-30', '31-45', '46-60', '60+'], datasets: [{ label: 'Utenti', data: [333, 10738, 4615, 348, 26], backgroundColor: CHART_COLORS[0] }] }, options: defaultBarOptions() });
+            new Chart(document.getElementById('statoCivileChart'), { type: 'pie', data: { labels: ['Celibe/Nubile', 'Coniugato/a', 'Altro'], datasets: [{ data: [12128, 4403, 991], backgroundColor: [CHART_COLORS[0], CHART_COLORS[1], CHART_COLORS[6]] }] }, options: defaultPieOptions });
+            
+            const etaAnnoData = [[10, 178, 93, 8, 0], [18, 424, 183, 7, 0], [17, 234, 122, 6, 1], [13, 296, 99, 4, 0], [5, 430, 114, 11, 1], [17, 348, 124, 4, 0], [11, 305, 121, 10, 2], [8, 446, 142, 18, 1], [15, 350, 137, 13, 0], [17, 375, 193, 20, 2], [8, 301, 173, 17, 1], [11, 348, 188, 14, 1], [10, 281, 191, 20, 1], [27, 513, 282, 29, 3], [37, 650, 360, 37, 2], [41, 696, 408, 38, 3], [32, 427, 351, 37, 4], [22, 367, 383, 40, 2], [7, 107, 177, 23, 2], [9, 159, 274, 35, 4], [16, 321, 370, 42, 3], [24, 620, 629, 61, 2], [35, 786, 788, 96, 5], [21, 626, 725, 75, 4]];
+            const etaPercentuale = etaAnnoData.map(row => { const total = row.reduce((s, c) => s + c, 0); return total > 0 ? row.map(v => (v / total) * 100) : row; });
+            new Chart(document.getElementById('etaEvoluzioneChart'), {
+                type: 'bar',
+                data: {
+                    labels: YEARS,
+                    datasets: [
+                        { label: '18-30', data: etaPercentuale.map(r => r[1]), backgroundColor: CHART_COLORS[0] },
+                        { label: '31-45', data: etaPercentuale.map(r => r[2]), backgroundColor: CHART_COLORS[1] }
+                    ]
+                },
+                options: { ...defaultBarOptions('x', true), interaction: { mode: 'index', intersect: false }, plugins: { tooltip: { position: 'nearest' } } }
+            });
+
+            // CAP 3: ORIGINI
+            new Chart(document.getElementById('nazionalitaChart'), { type: 'bar', data: { labels: ['El Salvador', 'Perù', 'Nigeria', 'Egitto', 'Pakistan', 'Bangladesh', 'Gambia', 'Mali', "Costa d'Avorio", 'Eritrea'], datasets: [{ label: 'Utenti', data: [1054, 988, 860, 752, 701, 652, 632, 592, 584, 570], backgroundColor: CHART_COLORS[0] }] }, options: defaultBarOptions('y') });
+            new Chart(document.getElementById('statusGiuridicoChart'), { type: 'doughnut', data: { labels: ['Richiedente Asilo', 'Titolare Protezione', 'Nessuna Domanda', 'Altro'], datasets: [{ data: [6886, 4608, 3957, 1071], backgroundColor: CHART_COLORS }] }, options: defaultPieOptions });
+
+            const nazionalitaAnnoData = {
+                 'El Salvador': [141, 227, 126, 96, 124, 76, 53, 58, 26, 17, 12, 17, 17, 10, 3, 1, 1, 2, 0, 0, 1, 0, 0, 0], 'Perù': [93, 142, 76, 150, 156, 115, 93, 116, 68, 56, 42, 28, 20, 18, 12, 10, 7, 5, 2, 1, 1, 2, 0, 0], 'Nigeria': [4, 3, 2, 1, 2, 2, 6, 2, 4, 15, 33, 73, 108, 159, 143, 96, 53, 47, 35, 26, 15, 20, 10, 5], 'Egitto': [2, 0, 0, 0, 1, 0, 0, 1, 0, 3, 2, 4, 9, 21, 52, 104, 21, 19, 6, 12, 33, 159, 152, 131], 'Pakistan': [0, 0, 1, 0, 0, 0, 0, 0, 0, 2, 8, 48, 62, 53, 52, 47, 2, 6, 2, 5, 12, 143, 135, 122], 'Bangladesh': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 9, 19, 39, 37, 39, 17, 18, 2, 7, 21, 151, 142, 151], 'Gambia': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 14, 66, 68, 93, 68, 30, 19, 5, 2, 7, 88, 55, 36], 'Eritrea': [9, 11, 4, 3, 10, 19, 17, 18, 22, 18, 46, 78, 57, 43, 29, 21, 9, 5, 1, 2, 3, 12, 10, 9]
+            };
+            const nazionalitaDatasets = Object.keys(nazionalitaAnnoData).map((n, i) => ({
+                label: n, data: nazionalitaAnnoData[n], backgroundColor: CHART_COLORS[i % CHART_COLORS.length],
+            }));
+            new Chart(document.getElementById('nazionalitaEvoluzioneChart'), { type: 'bar', data: { labels: YEARS, datasets: nazionalitaDatasets }, options: defaultBarOptions('x', true) });
+
+            // CAP 4: CAPITALE UMANO
+            new Chart(document.getElementById('scolaritaChart'), { type: 'bar', data: { labels: ['Medie Sup.', 'Medie Inf.', 'Elementare', 'Analfabeta', 'Laurea', 'Non Spec.'], datasets: [{ label: 'Utenti', data: [5482, 4245, 3344, 1955, 1482, 1011], backgroundColor: CHART_COLORS[1] }] }, options: defaultBarOptions() });
+            
+            const scolaritaAnnoData = [[12, 35, 32, 56, 79], [61, 148, 30, 121, 238], [33, 75, 39, 83, 135], [77, 73, 38, 83, 138], [56, 132, 62, 125, 180], [67, 98, 47, 98, 176], [66, 74, 39, 87, 157], [90, 102, 56, 139, 213], [67, 85, 41, 127, 187], [85, 96, 50, 150, 214], [80, 89, 44, 118, 161], [99, 84, 36, 126, 203], [79, 66, 50, 112, 177], [131, 137, 75, 214, 276], [165, 150, 89, 275, 377], [153, 182, 94, 275, 452], [105, 116, 79, 202, 323], [103, 109, 89, 187, 305], [29, 43, 33, 83, 120], [42, 51, 57, 120, 199], [66, 93, 70, 194, 311], [112, 173, 121, 334, 569], [120, 222, 148, 412, 765], [77, 166, 119, 353, 693]];
+            const scolaritaPercentuale = scolaritaAnnoData.map(row => { const total = row.reduce((s, c) => s + c, 0); return total > 0 ? row.map(v => (v / total) * 100) : row; });
+            new Chart(document.getElementById('scolaritaEvoluzioneChart'), {
+                type: 'line',
+                data: {
+                    labels: YEARS,
+                    datasets: [
+                        { label: 'Laurea', data: scolaritaPercentuale.map(r => r[2]), borderColor: CHART_COLORS[0], fill: false },
+                        { label: 'Medie Sup.', data: scolaritaPercentuale.map(r => r[4]), borderColor: CHART_COLORS[1], fill: false },
+                        { label: 'Analfabeta', data: scolaritaPercentuale.map(r => r[0]), borderColor: CHART_COLORS[2], fill: false }
+                    ]
+                },
+                options: defaultBarOptions()
+            });
+            
+            // CAP 5: DISOCCUPAZIONE
+            const disoccupatiAnnoData = [178, 202, 289, 487, 506, 490, 778, 286, 178, 417, 360, 421, 345, 627, 829, 935, 659, 630, 252, 381, 584, 1079, 1386, 1210];
+            new Chart(document.getElementById('disoccupazioneEvoluzioneChart'), {
+                type: 'bar',
+                data: {
+                    labels: YEARS,
+                    datasets: [
+                        { type: 'line', label: 'Numero Disoccupati', data: disoccupatiAnnoData, borderColor: CHART_COLORS[2], tension: 0.3, fill: false },
+                        { type: 'bar', label: 'Primi Accessi', data: accessiData, backgroundColor: CHART_COLORS[0] + 'aa' }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'top' }, tooltip: { mode: 'index', intersect: false } }
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>
