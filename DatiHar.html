@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analisi Avanzata Utenti Naga Har (con Proiezioni 2025)</title>
+    <title>Analisi Completa Utenti Naga Har (Report Finale 2002-2025)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
@@ -71,7 +71,7 @@
             font-size: 1.25rem;
             font-weight: 700;
             text-align: center;
-            margin: 2rem 0 1rem 0;
+            margin: 2.5rem 0 1.5rem 0;
             color: #1e40af;
             border-bottom: 2px solid #dbeafe;
             padding-bottom: 0.5rem;
@@ -89,6 +89,7 @@
             border-radius: 0.75rem;
             padding: 1.5rem;
             box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            height: 100%;
         }
     </style>
 </head>
@@ -96,22 +97,22 @@
 
     <header class="bg-white shadow-md sticky top-0 z-10">
         <div class="container mx-auto px-6 py-4">
-            <h1 class="text-3xl font-bold text-gray-900">Naga Har: Analisi Avanzata 2002-2025</h1>
-            <p class="text-lg text-gray-600">Visualizzazione dati completa con proiezioni e analisi di trend temporali.</p>
+            <h1 class="text-3xl font-bold text-gray-900">Analisi Completa Utenti Naga Har (2002-2025)</h1>
+            <p class="text-lg text-gray-600">Un report visivo sull'evoluzione dei flussi, dei profili e delle sfide strutturali.</p>
         </div>
     </header>
 
     <main class="container mx-auto p-6 space-y-16">
         
         <section id="panoramica">
-            <p class="section-intro text-xl">Questa analisi avanzata si basa sui dati completi dal 2002 al 18/09/2025. Per fornire una visione realistica dei trend, i dati del 2025 sono stati proiettati su base annua. L'infografica esplora l'evoluzione dei flussi, dei profili demografici e delle sfide strutturali, offrendo uno spaccato dettagliato e dinamico.</p>
+            <p class="section-intro text-xl">Basandosi sui dati completi dal 2002 al 18/09/2025, questa analisi offre uno sguardo senza precedenti sull'evoluzione del centro Naga Har. Per fornire una visione realistica dei trend, i dati del 2025 sono stati proiettati su base annua per riflettere l'andamento atteso a fine anno.</p>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="stat-card">
                     <div class="stat-number">17,522</div>
                     <div class="stat-label">Primi Accessi Reali (2002-2025)</div>
                 </div>
                  <div class="stat-card">
-                    <div class="stat-number">~1,935</div>
+                    <div class="stat-number">~2,032</div>
                     <div class="stat-label">Accessi Stimati a Fine 2025</div>
                 </div>
                 <div class="stat-card">
@@ -121,9 +122,9 @@
             </div>
         </section>
 
-        <section id="flussi">
+        <section id="capitolo1">
             <h2>Capitolo 1: Dinamiche dei Flussi e Operatività</h2>
-            <p class="section-intro">L'analisi temporale dei flussi rivela un'intensificazione costante, con picchi legati a eventi globali. La proiezione per il 2025 suggerisce che il trend di crescita si manterrà robusto. L'analisi settimanale, inoltre, mostra come si distribuisce il carico di lavoro del centro nel tempo.</p>
+            <p class="section-intro">L'analisi temporale dei flussi rivela un'intensificazione costante, con picchi legati a eventi globali. La proiezione per il 2025 suggerisce che il trend di crescita si manterrà robusto. L'analisi settimanale, inoltre, mostra come si distribuisce il carico di lavoro del centro nel tempo, con un evidente cambiamento post-pandemia.</p>
             <div class="card mb-8">
                 <h3>Andamento Primi Accessi e Età Media (2002-2025)</h3>
                 <div class="chart-container">
@@ -137,65 +138,123 @@
                     <div class="small-chart-container">
                         <canvas id="giorniAssolutiChart"></canvas>
                     </div>
-                    <p class="text-sm text-gray-600 mt-4">Questo grafico ad area in pila mostra come il volume totale di accessi settimanali sia cresciuto esponenzialmente, con una concentrazione particolare nei giorni di lunedì e martedì.</p>
+                    <p class="text-sm text-gray-600 mt-4">Il grafico mostra il volume crescente di accessi settimanali. È evidente il drastico calo degli accessi del Lunedì (blu) a partire dal 2020, con una conseguente ridistribuzione del carico sugli altri giorni della settimana.</p>
                 </div>
                  <div class="card">
                     <h3>Distribuzione Settimanale Accessi (Valori Percentuali per Anno)</h3>
                     <div class="small-chart-container">
                         <canvas id="giorniPercentualiChart"></canvas>
                     </div>
-                     <p class="text-sm text-gray-600 mt-4">La vista percentuale mostra che, nonostante la crescita dei numeri assoluti, la distribuzione del carico di lavoro nella settimana è rimasta relativamente stabile, con il lunedì che costantemente rappresenta la giornata di maggiore afflusso.</p>
+                     <p class="text-sm text-gray-600 mt-4">La vista percentuale conferma il cambiamento strutturale: il Lunedì, che rappresentava circa il 25% degli accessi, crolla dopo il 2020, mentre cresce il peso degli altri giorni, in particolare del Mercoledì e del Venerdì.</p>
                 </div>
             </div>
         </section>
 
-        <section id="demografia">
+        <section id="capitolo2">
             <h2>Capitolo 2: L'Evoluzione del Profilo Demografico</h2>
             <p class="section-intro">Il profilo demografico si trasforma. L'analisi temporale di genere e composizione familiare rivela una lenta ma progressiva transizione da una migrazione prettamente individuale e maschile a modelli che includono sempre più donne e nuclei familiari.</p>
             
-            <h4>Il Profilo Aggregato: Una Fotografia</h4>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="card"><h3>Stato Civile Aggregato</h3><div class="small-chart-container"><canvas id="statoCivileChart"></canvas></div></div>
-                <div class="card"><h3>Riepilogo Aggregato del Numero di Figli</h3><div class="small-chart-container"><canvas id="figliChart"></canvas></div></div>
+            <h4>Il Profilo Aggregato: Una Fotografia (2002-2025)</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card"><h3>Genere</h3><div class="small-chart-container"><canvas id="genereChart"></canvas></div></div>
+                <div class="card"><h3>Età</h3><div class="small-chart-container"><canvas id="etaChart"></canvas></div></div>
+                <div class="card"><h3>Riepilogo Numero di Figli</h3><div class="small-chart-container"><canvas id="figliChart"></canvas></div></div>
             </div>
 
-            <h4>L'Evoluzione della Composizione per Genere</h4>
+            <h4>L'Evoluzione del Profilo nel Tempo</h4>
+             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-12">
+                <div class="card">
+                    <h3>Evoluzione delle Fasce d'Età (% sul totale annuo)</h3>
+                    <div class="small-chart-container">
+                        <canvas id="etaEvoluzioneChart"></canvas>
+                    </div>
+                     <p class="text-sm text-gray-600 mt-4">La quota di utenti nella fascia 18-30 anni (blu) si riduce, a favore della fascia 31-45 (verde). La popolazione che arriva è sempre più matura.</p>
+                </div>
+                <div class="card">
+                    <h3>Stato Civile Aggregato</h3>
+                    <div class="small-chart-container">
+                        <canvas id="statoCivileChart"></canvas>
+                    </div>
+                </div>
+            </div>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-12">
                 <div class="card">
                     <h3>Distribuzione per Genere (Valori Assoluti per Anno)</h3>
                     <div class="small-chart-container">
                         <canvas id="genereAssolutoChart"></canvas>
                     </div>
-                    <p class="text-sm text-gray-600 mt-4">Il grafico mostra la crescita sia della componente maschile (blu) che femminile (viola). Sebbene gli uomini rimangano la maggioranza, il volume di donne che accedono al servizio è aumentato significativamente negli anni più recenti.</p>
+                    <p class="text-sm text-gray-600 mt-4">Il grafico mostra la crescita sia della componente maschile (blu) che femminile (viola). Sebbene gli uomini rimangano la maggioranza, il volume di donne è aumentato significativamente.</p>
                 </div>
                  <div class="card">
                     <h3>Distribuzione per Genere (Valori Percentuali per Anno)</h3>
                     <div class="small-chart-container">
                         <canvas id="generePercentualeChart"></canvas>
                     </div>
-                     <p class="text-sm text-gray-600 mt-4">La vista 100% evidenzia la lenta ma costante crescita della quota femminile sul totale annuo, passata da circa il 10% nei primi anni a picchi vicini al 20% nel periodo più recente, segnalando un cambiamento nella natura dei flussi.</p>
+                     <p class="text-sm text-gray-600 mt-4">La vista 100% evidenzia la lenta ma costante crescita della quota femminile sul totale annuo, passata da circa il 10% a picchi vicini al 20% nel periodo più recente.</p>
                 </div>
             </div>
         </section>
 
-        <section id="origini-status">
-            <h2>Capitolo 3: Le Ondate Migratorie e lo Status Giuridico</h2>
-            <p class="section-intro">Le provenienze degli utenti disegnano una mappa delle crisi mondiali. L'analisi temporale, con la proiezione per il 2025, conferma l'intensificarsi dei flussi dall'Africa e dall'Asia, ognuno con specifiche necessità di protezione legale.</p>
+        <section id="capitolo3">
+            <h2>Capitolo 3: Origini, Status e Capitale Umano</h2>
+            <p class="section-intro">Le provenienze degli utenti disegnano una mappa delle crisi mondiali. L'analisi temporale, con la proiezione per il 2025, conferma l'intensificarsi dei flussi dall'Africa e dall'Asia. Questo capitolo esplora anche lo status legale e il bagaglio di istruzione delle persone che arrivano.</p>
             
-             <div class="card mt-12">
-                <h3>Flussi delle Principali Nazionalità per Anno (con proiezione 2025)</h3>
-                <div class="chart-container">
-                    <canvas id="nazionalitaEvoluzioneChart"></canvas>
+            <h4>Provenienze e Status Legale: Dati Aggregati (2002-2025)</h4>
+             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                 <div class="card">
+                    <h3>Principali 10 Nazionalità</h3>
+                    <div class="small-chart-container" style="height: 400px;">
+                        <canvas id="nazionalitaChart"></canvas>
+                    </div>
                 </div>
-                <p class="text-sm text-gray-600 mt-4 text-center">Il grafico visualizza le ondate migratorie: prima America Latina, poi Corno d'Africa e, dal 2014, Africa Occidentale e Asia. La proiezione per il 2025 (barre in pila) mostra una continuazione di questo trend, con un consolidamento dei flussi da Egitto, Bangladesh e Pakistan.</p>
+                <div class="card">
+                    <h3>Status Giuridico</h3>
+                    <div class="small-chart-container" style="height: 400px;">
+                        <canvas id="statusGiuridicoChart"></canvas>
+                    </div>
+                </div>
             </div>
 
+            <h4>Evoluzione delle Provenienze e Status Incrociati</h4>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-12">
+                <div class="card">
+                    <h3>Flussi delle Principali Nazionalità per Anno (Valori Assoluti, con proiezione 2025)</h3>
+                    <div class="small-chart-container">
+                        <canvas id="nazionalitaEvoluzioneAssolutaChart"></canvas>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-4">Questa visualizzazione ad area mostra le "ondate" migratorie: l'onda latinoamericana (es. El Salvador, Perù) e la successiva crescita massiccia delle nazionalità africane e asiatiche.</p>
+                </div>
+                 <div class="card">
+                    <h3>Flussi delle Principali Nazionalità per Anno (Valori Percentuali)</h3>
+                    <div class="small-chart-container">
+                        <canvas id="nazionalitaEvoluzionePercentualeChart"></canvas>
+                    </div>
+                     <p class="text-sm text-gray-600 mt-4">La vista 100% evidenzia ancora meglio il cambiamento strutturale: la quota delle nazionalità latinoamericane si riduce, mentre la composizione recente è dominata da persone provenienti da Africa e Asia.</p>
+                </div>
+            </div>
             <div class="card mt-12">
                 <h3>Status Giuridico per Principali Nazionalità (Aggregato 2002-2025)</h3>
                 <div class="chart-container" style="height: 500px;">
                     <canvas id="statusPerNazioneChart"></canvas>
                 </div>
-                <p class="text-sm text-gray-600 mt-4 text-center">Lo status varia con la nazionalità. Eritrei e Ivoriani hanno alte percentuali di protezione. Peruviani ed Egiziani, invece, hanno una quota enorme di persone che non hanno ancora presentato domanda, indicando percorsi migratori con finalità diverse dall'asilo.</p>
+                <p class="text-sm text-gray-600 mt-4 text-center">Lo status varia con la nazionalità. Eritrei e Ivoriani hanno alte percentuali di protezione. Peruviani ed Egiziani, invece, hanno una quota enorme di persone che non hanno ancora presentato domanda, indicando percorsi migratori diversi dall'asilo.</p>
+            </div>
+
+            <h4>Il Capitale Umano: Livello di Istruzione</h4>
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+                <div class="card">
+                    <h3>Livello di Scolarità (Aggregato)</h3>
+                     <div class="small-chart-container">
+                        <canvas id="scolaritaChart"></canvas>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Evoluzione Livello di Scolarità (% sul totale annuo)</h3>
+                     <div class="small-chart-container">
+                        <canvas id="scolaritaEvoluzioneChart"></canvas>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-4">Si nota una tendenza positiva: la quota di persone con laurea (blu) e diploma di medie superiori (verde) è aumentata nel tempo, mentre la percentuale di analfabeta (rosso) è in calo.</p>
+                </div>
             </div>
         </section>
 
@@ -212,7 +271,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             const FONT_COLOR = '#1f2937';
             const GRID_COLOR = '#e5e7eb';
-            const CHART_COLORS = ['#3b82f6', '#10b981', '#ef4444', '#f97316', '#8b5cf6', '#ec4899', '#64748b', '#f59e0b', '#34d399', '#a78bfa'];
+            const CHART_COLORS = ['#3b82f6', '#10b981', '#ef4444', '#f97316', '#8b5cf6', '#ec4899', '#64748b', '#f59e0b', '#34d399', '#a78bfa', '#06b6d4', '#d946ef'];
             const YEARS = Array.from({ length: 24 }, (_, i) => 2002 + i);
 
             const tooltipTitleCallback = (tooltipItems) => {
@@ -229,35 +288,32 @@
                 interaction: { mode: 'index', intersect: false }
             });
 
-            const defaultAreaOptions = (stacked = false, is100 = false) => {
+             const defaultAreaOptions = (stacked = false, is100 = false) => {
                 const options = {
                     responsive: true, maintainAspectRatio: false,
                     plugins: { legend: { labels: { color: FONT_COLOR } }, tooltip: { callbacks: { title: tooltipTitleCallback }, mode: 'index', intersect: false } },
                     scales: { x: { ticks: { color: FONT_COLOR }, grid: { color: GRID_COLOR } }, y: { ticks: { color: FONT_COLOR }, grid: { color: GRID_COLOR }, stacked: stacked } },
-                    elements: { line: { tension: 0.3 } },
+                    elements: { line: { tension: 0.3 }, point: { radius: 0 } },
                     interaction: { mode: 'index', intersect: false }
                 };
                 if(is100) {
                     options.scales.y.max = 100;
-                    options.scales.y.ticks.callback = value => value + '%';
+                    options.scales.y.ticks.callback = value => Math.round(value) + '%';
                 }
                 return options;
             };
 
             const defaultPieOptions = { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top', labels: { color: FONT_COLOR } }, tooltip: { callbacks: { title: tooltipTitleCallback } } } };
             
-            // --- DATA NORMALIZATION FOR 2025 ---
-            const projectionFactor = 365 / 261; // Data until Sept 18
+            const projectionFactor = 365 / 261; 
             const projectValue = (value) => Math.round(value * projectionFactor);
 
             // CAP 1: FLUSSI
             const accessiData = [297, 648, 385, 417, 562, 503, 453, 622, 521, 611, 504, 566, 506, 860, 1089, 1187, 854, 818, 316, 481, 752, 1339, 1717, 1453];
             const accessiProjected2025 = projectValue(accessiData[accessiData.length - 1]);
             const accessiDelta2025 = accessiProjected2025 - accessiData[accessiData.length - 1];
-
             const accessiDataForChart_real = [...accessiData];
             const accessiDataForChart_delta = [...new Array(accessiData.length - 1).fill(0), accessiDelta2025];
-            
             const etaMediaData = [29.1, 27.95, 28.17, 27.06, 27.68, 27.08, 27.91, 27.8, 28.21, 28.11, 28.19, 29.22, 28.48, 28.31, 28.14, 29.42, 29.21, 31.1, 32.23, 33.48, 32.76, 33.59, 34.41, 34.6];
             
             new Chart(document.getElementById('accessiEtaChart'), {
@@ -270,161 +326,67 @@
                         { label: 'Proiezione Fine Anno', data: accessiDataForChart_delta, backgroundColor: '#a5b4fc', yAxisID: 'y', order: 1, stack: 'accessi' }
                     ]
                 },
-                options: {
-                    responsive: true, maintainAspectRatio: false,
-                    plugins: { legend: { position: 'top' }, tooltip: { mode: 'index', intersect: false } },
-                    scales: {
-                        x: { stacked: true },
-                        y: { type: 'linear', display: true, position: 'left', title: { display: true, text: 'Numero Accessi' }, stacked: true },
-                        y1: { type: 'linear', display: true, position: 'right', grid: { drawOnChartArea: false }, title: { display: true, text: 'Età Media' } }
-                    }
-                }
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' }, tooltip: { mode: 'index', intersect: false } }, scales: { x: { stacked: true }, y: { type: 'linear', display: true, position: 'left', title: { display: true, text: 'Numero Accessi' }, stacked: true }, y1: { type: 'linear', display: true, position: 'right', grid: { drawOnChartArea: false }, title: { display: true, text: 'Età Media' } } } }
             });
             
             const giorniData = {
-                lun: [43, 140, 101, 118, 109, 87, 116, 126, 113, 114, 111, 127, 114, 154, 222, 219, 161, 150, 60, 91, 149, 235, 332, 269],
+                lun: [43, 140, 101, 118, 109, 87, 116, 126, 113, 114, 111, 127, 114, 154, 222, 219, 161, 150, 4, 1, 3, 3, 2, 2],
                 mar: [59, 132, 62, 104, 106, 107, 70, 119, 101, 121, 101, 109, 104, 165, 201, 221, 172, 162, 59, 90, 134, 252, 340, 249],
                 mer: [60, 137, 65, 71, 123, 111, 108, 127, 107, 120, 97, 122, 100, 177, 212, 240, 162, 170, 71, 102, 155, 269, 360, 284],
                 gio: [32, 76, 62, 60, 85, 77, 60, 104, 76, 99, 80, 88, 77, 140, 179, 189, 125, 122, 45, 71, 109, 199, 259, 206],
                 ven: [83, 133, 80, 56, 75, 84, 82, 117, 98, 125, 91, 102, 94, 181, 228, 257, 182, 164, 68, 107, 163, 298, 355, 281]
             };
-
-            new Chart(document.getElementById('giorniAssolutiChart'), {
-                type: 'line',
-                data: {
-                    labels: YEARS,
-                    datasets: [
-                        { label: 'Lunedì', data: giorniData.lun, borderColor: CHART_COLORS[0], backgroundColor: CHART_COLORS[0] + '80', fill: true },
-                        { label: 'Martedì', data: giorniData.mar, borderColor: CHART_COLORS[1], backgroundColor: CHART_COLORS[1] + '80', fill: true },
-                        { label: 'Mercoledì', data: giorniData.mer, borderColor: CHART_COLORS[2], backgroundColor: CHART_COLORS[2] + '80', fill: true },
-                        { label: 'Giovedì', data: giorniData.gio, borderColor: CHART_COLORS[3], backgroundColor: CHART_COLORS[3] + '80', fill: true },
-                        { label: 'Venerdì', data: giorniData.ven, borderColor: CHART_COLORS[4], backgroundColor: CHART_COLORS[4] + '80', fill: true },
-                    ]
-                },
-                options: defaultAreaOptions(true, false)
-            });
-
-            const giorniPercentualiData = YEARS.map((_, i) => {
-                const total = giorniData.lun[i] + giorniData.mar[i] + giorniData.mer[i] + giorniData.gio[i] + giorniData.ven[i];
-                if (total === 0) return { lun: 0, mar: 0, mer: 0, gio: 0, ven: 0 };
-                return {
-                    lun: (giorniData.lun[i] / total) * 100,
-                    mar: (giorniData.mar[i] / total) * 100,
-                    mer: (giorniData.mer[i] / total) * 100,
-                    gio: (giorniData.gio[i] / total) * 100,
-                    ven: (giorniData.ven[i] / total) * 100,
-                };
-            });
-
-            new Chart(document.getElementById('giorniPercentualiChart'), {
-                type: 'line',
-                data: {
-                    labels: YEARS,
-                    datasets: [
-                        { label: 'Lunedì', data: giorniPercentualiData.map(d => d.lun), borderColor: CHART_COLORS[0], backgroundColor: CHART_COLORS[0] + '80', fill: true },
-                        { label: 'Martedì', data: giorniPercentualiData.map(d => d.mar), borderColor: CHART_COLORS[1], backgroundColor: CHART_COLORS[1] + '80', fill: true },
-                        { label: 'Mercoledì', data: giorniPercentualiData.map(d => d.mer), borderColor: CHART_COLORS[2], backgroundColor: CHART_COLORS[2] + '80', fill: true },
-                        { label: 'Giovedì', data: giorniPercentualiData.map(d => d.gio), borderColor: CHART_COLORS[3], backgroundColor: CHART_COLORS[3] + '80', fill: true },
-                        { label: 'Venerdì', data: giorniPercentualiData.map(d => d.ven), borderColor: CHART_COLORS[4], backgroundColor: CHART_COLORS[4] + '80', fill: true },
-                    ]
-                },
-                options: defaultAreaOptions(true, true)
-            });
-
+            new Chart(document.getElementById('giorniAssolutiChart'), { type: 'line', data: { labels: YEARS, datasets: Object.keys(giorniData).map((g, i) => ({ label: g.charAt(0).toUpperCase() + g.slice(1), data: giorniData[g], borderColor: CHART_COLORS[i], backgroundColor: CHART_COLORS[i] + '80', fill: true })) }, options: defaultAreaOptions(true, false) });
+            const giorniPercentualiData = YEARS.map((_, i) => { const total = Object.values(giorniData).reduce((sum, day) => sum + day[i], 0); return total === 0 ? { lun: 0, mar: 0, mer: 0, gio: 0, ven: 0 } : { lun: (giorniData.lun[i] / total) * 100, mar: (giorniData.mar[i] / total) * 100, mer: (giorniData.mer[i] / total) * 100, gio: (giorniData.gio[i] / total) * 100, ven: (giorniData.ven[i] / total) * 100 }; });
+            new Chart(document.getElementById('giorniPercentualiChart'), { type: 'line', data: { labels: YEARS, datasets: Object.keys(giorniData).map((g, i) => ({ label: g.charAt(0).toUpperCase() + g.slice(1), data: giorniPercentualiData.map(d => d[g]), borderColor: CHART_COLORS[i], backgroundColor: CHART_COLORS[i] + '80', fill: true })) }, options: defaultAreaOptions(true, true) });
 
             // CAP 2: DEMOGRAFIA
+            new Chart(document.getElementById('genereChart'), { type: 'doughnut', data: { labels: ['Uomini', 'Donne'], datasets: [{ data: [15545, 1976], backgroundColor: [CHART_COLORS[0], CHART_COLORS[5]] }] }, options: defaultPieOptions });
+            new Chart(document.getElementById('etaChart'), { type: 'bar', data: { labels: ['0-17', '18-30', '31-45', '46-60', '60+'], datasets: [{ label: 'Utenti', data: [333, 10738, 5137, 1488, 251], backgroundColor: CHART_COLORS[0] }] }, options: defaultBarOptions() });
             new Chart(document.getElementById('statoCivileChart'), { type: 'pie', data: { labels: ['Celibe/Nubile', 'Coniugato/a', 'Altro/Non Spec.'], datasets: [{ data: [12128, 4403, 991], backgroundColor: [CHART_COLORS[0], CHART_COLORS[1], CHART_COLORS[6]] }] }, options: defaultPieOptions });
-            const figliData = [12282, 1618, 1272, 1128 + 942]; // Sommo 3 e 4+ figli
-            new Chart(document.getElementById('figliChart'), { type: 'doughnut', data: { labels: ['0 Figli', '1 Figlio', '2 Figli', '3+ Figli'], datasets: [{ data: figliData, backgroundColor: [CHART_COLORS[0], CHART_COLORS[1], CHART_COLORS[3], CHART_COLORS[4]] }] }, options: defaultPieOptions });
-
-            const genereData = {
-                f: [34, 62, 44, 34, 55, 42, 34, 41, 44, 36, 26, 26, 32, 59, 94, 110, 87, 91, 44, 68, 127, 235, 290, 246],
-                m: [263, 586, 341, 383, 506, 461, 419, 581, 475, 574, 475, 539, 473, 800, 994, 1076, 767, 725, 271, 412, 625, 1104, 1426, 1206]
-            };
-
-            new Chart(document.getElementById('genereAssolutoChart'), {
-                type: 'line',
-                data: {
-                    labels: YEARS,
-                    datasets: [
-                        { label: 'Donne', data: genereData.f, borderColor: CHART_COLORS[5], backgroundColor: CHART_COLORS[5] + '80', fill: true },
-                        { label: 'Uomini', data: genereData.m, borderColor: CHART_COLORS[0], backgroundColor: CHART_COLORS[0] + '80', fill: true }
-                    ]
-                },
-                options: defaultAreaOptions(true, false)
-            });
-
-            const generePercentualeData = YEARS.map((_, i) => {
-                const total = genereData.f[i] + genereData.m[i];
-                if (total === 0) return { f: 0, m: 0 };
-                return {
-                    f: (genereData.f[i] / total) * 100,
-                    m: (genereData.m[i] / total) * 100
-                };
-            });
-
-            new Chart(document.getElementById('generePercentualeChart'), {
-                type: 'line',
-                data: {
-                    labels: YEARS,
-                    datasets: [
-                         { label: 'Donne', data: generePercentualeData.map(d => d.f), borderColor: CHART_COLORS[5], backgroundColor: CHART_COLORS[5] + '80', fill: true },
-                        { label: 'Uomini', data: generePercentualeData.map(d => d.m), borderColor: CHART_COLORS[0], backgroundColor: CHART_COLORS[0] + '80', fill: true }
-                    ]
-                },
-                options: defaultAreaOptions(true, true)
-            });
-
+            new Chart(document.getElementById('figliChart'), { type: 'doughnut', data: { labels: ['0 Figli', '1 Figlio', '2 Figli', '3+ Figli'], datasets: [{ data: [12282, 1618, 1272, 2070], backgroundColor: [CHART_COLORS[0], CHART_COLORS[1], CHART_COLORS[3], CHART_COLORS[4]] }] }, options: defaultPieOptions });
+            const etaAnnoData = [[10, 178, 93, 8, 0], [18, 424, 183, 7, 0], [17, 234, 122, 6, 1], [13, 296, 99, 4, 0], [5, 430, 114, 11, 1], [17, 348, 124, 4, 0], [11, 305, 121, 10, 2], [8, 446, 142, 18, 1], [15, 350, 137, 13, 0], [17, 375, 193, 20, 2], [8, 301, 173, 17, 1], [11, 348, 188, 14, 1], [10, 281, 191, 20, 1], [27, 513, 282, 29, 3], [37, 650, 360, 37, 2], [41, 696, 408, 38, 3], [32, 427, 351, 37, 4], [22, 367, 383, 40, 2], [7, 107, 177, 23, 2], [9, 159, 274, 35, 4], [16, 321, 370, 42, 3], [24, 620, 629, 61, 2], [35, 786, 788, 96, 5], [21, 626, 725, 75, 4]];
+            const etaPercentuale = etaAnnoData.map(row => { const total = row.reduce((s, c) => s + c, 1); return row.map(v => (v / total) * 100); });
+            new Chart(document.getElementById('etaEvoluzioneChart'), { type: 'bar', data: { labels: YEARS, datasets: [{ label: '18-30', data: etaPercentuale.map(r => r[1]), backgroundColor: CHART_COLORS[0] }, { label: '31-45', data: etaPercentuale.map(r => r[2]), backgroundColor: CHART_COLORS[1] }] }, options: { ...defaultBarOptions('x', true), interaction: { mode: 'index', intersect: false } } });
+            const genereData = { f: [34, 62, 44, 34, 55, 42, 34, 41, 44, 36, 26, 26, 32, 59, 94, 110, 87, 91, 44, 68, 127, 235, 290, 246], m: [263, 586, 341, 383, 506, 461, 419, 581, 475, 574, 475, 539, 473, 800, 994, 1076, 767, 725, 271, 412, 625, 1104, 1426, 1206] };
+            new Chart(document.getElementById('genereAssolutoChart'), { type: 'line', data: { labels: YEARS, datasets: [{ label: 'Donne', data: genereData.f, borderColor: CHART_COLORS[5], backgroundColor: CHART_COLORS[5] + '80', fill: true }, { label: 'Uomini', data: genereData.m, borderColor: CHART_COLORS[0], backgroundColor: CHART_COLORS[0] + '80', fill: true }] }, options: defaultAreaOptions(true, false) });
+            const generePercentualeData = YEARS.map((_, i) => { const total = genereData.f[i] + genereData.m[i]; return total === 0 ? { f: 0, m: 0 } : { f: (genereData.f[i] / total) * 100, m: (genereData.m[i] / total) * 100 }; });
+            new Chart(document.getElementById('generePercentualeChart'), { type: 'line', data: { labels: YEARS, datasets: [{ label: 'Donne', data: generePercentualeData.map(d => d.f), borderColor: CHART_COLORS[5], backgroundColor: CHART_COLORS[5] + '80', fill: true }, { label: 'Uomini', data: generePercentualeData.map(d => d.m), borderColor: CHART_COLORS[0], backgroundColor: CHART_COLORS[0] + '80', fill: true }] }, options: defaultAreaOptions(true, true) });
 
             // CAP 3: ORIGINI
+            new Chart(document.getElementById('nazionalitaChart'), { type: 'bar', data: { labels: ['El Salvador', 'Perù', 'Nigeria', 'Egitto', 'Pakistan', 'Bangladesh', 'Gambia', 'Mali', "Costa d'Avorio", 'Eritrea'], datasets: [{ label: 'Utenti', data: [1054, 988, 925, 817, 701, 652, 632, 592, 584, 570], backgroundColor: CHART_COLORS[0] }] }, options: defaultBarOptions('y') });
+            new Chart(document.getElementById('statusGiuridicoChart'), { type: 'doughnut', data: { labels: ['Richiedente Asilo', 'Titolare Protezione', 'Nessuna Domanda', 'Altro'], datasets: [{ data: [6886, 4608, 3957, 2071], backgroundColor: CHART_COLORS }] }, options: defaultPieOptions });
+            
             const nazionalitaAnnoData = {
-                'El Salvador': [141, 227, 126, 96, 124, 76, 53, 58, 26, 17, 12, 17, 17, 10, 3, 1, 1, 2, 0, 0, 1, 0, 0, 0],
-                'Perù': [93, 142, 76, 150, 156, 115, 93, 116, 68, 56, 42, 28, 20, 18, 12, 10, 7, 5, 2, 1, 1, 2, 0, 0],
-                'Nigeria': [4, 3, 2, 1, 2, 2, 6, 2, 4, 15, 33, 73, 108, 159, 143, 96, 53, 47, 35, 26, 15, 20, 10, 5],
-                'Egitto': [2, 0, 0, 0, 1, 0, 0, 1, 0, 3, 2, 4, 9, 21, 52, 104, 21, 19, 6, 12, 33, 159, 152, 131],
-                'Pakistan': [0, 0, 1, 0, 0, 0, 0, 0, 0, 2, 8, 48, 62, 53, 52, 47, 2, 6, 2, 5, 12, 143, 135, 122],
-                'Bangladesh': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 9, 19, 39, 37, 39, 17, 18, 2, 7, 21, 151, 142, 151],
-                'Gambia': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 14, 66, 68, 93, 68, 30, 19, 5, 2, 7, 88, 55, 36],
-                'Eritrea': [9, 11, 4, 3, 10, 19, 17, 18, 22, 18, 46, 78, 57, 43, 29, 21, 9, 5, 1, 2, 3, 12, 10, 9]
+                'Bangladesh': [1,5,5,4,15,33,24,18,20,48,33,53,39,60,54,39,39,19,18,21,26,25,67,68],
+                'Costa d\'Avorio': [2,32,20,103,51,19,36,40,39,53,35,45,29,63,60,54,37,9,7,8,7,9,4,7],
+                'Egitto': [0,1,1,0,1,0,2,4,4,8,17,11,14,12,14,24,21,19,6,43,109,375,239,251],
+                'El Salvador': [1,0,0,0,0,0,2,3,6,2,2,10,9,39,61,115,104,150,102,112,121,144,142,151],
+                'Eritrea': [9,11,4,3,10,19,17,18,22,18,46,78,57,43,29,21,9,5,1,2,3,12,10,9],
+                'Gambia': [0,0,0,0,0,0,0,0,0,0,1,14,66,68,93,68,30,19,5,2,7,88,55,36],
+                'Mali': [0,0,2,2,5,3,6,21,10,14,9,12,17,35,42,40,19,10,2,1,5,52,49,38],
+                'Nigeria': [4,3,2,1,2,2,6,2,4,15,33,73,108,159,143,96,53,47,35,26,15,20,10,5],
+                'Pakistan': [0,0,1,0,0,0,0,0,0,2,8,48,62,53,52,47,2,6,2,5,12,143,135,122],
+                'Perù': [93,142,76,150,156,115,93,116,68,56,42,28,20,18,12,10,7,5,2,1,1,2,0,0],
+                'Altro': [185,413,169,54,167,256,220,332,296,339,267,238,138,280,393,497,396,423,196,145,178,134,228,321]
             };
 
-            const nazionalitaDatasets_real = {};
-            const nazionalitaDatasets_delta = {};
-            Object.keys(nazionalitaAnnoData).forEach(n => {
-                const data = nazionalitaAnnoData[n];
-                const lastYearValue = data[data.length - 1];
-                const projectedValue = projectValue(lastYearValue);
-                const deltaValue = projectedValue - lastYearValue;
-                
-                nazionalitaDatasets_real[n] = data;
-                nazionalitaDatasets_delta[n] = [...new Array(data.length - 1).fill(0), deltaValue];
-            });
+            const projectedNazionalita = {};
+            Object.keys(nazionalitaAnnoData).forEach(n => { projectedNazionalita[n] = [...nazionalitaAnnoData[n].slice(0, -1), projectValue(nazionalitaAnnoData[n][23])] });
+            new Chart(document.getElementById('nazionalitaEvoluzioneAssolutaChart'), { type: 'line', data: { labels: YEARS, datasets: Object.keys(projectedNazionalita).map((n, i) => ({ label: n, data: projectedNazionalita[n], borderColor: CHART_COLORS[i % CHART_COLORS.length], backgroundColor: CHART_COLORS[i % CHART_COLORS.length] + '80', fill: true })) }, options: defaultAreaOptions(true, false) });
+            const nazionalitaPercentuali = YEARS.map((_, i) => { const total = Object.values(projectedNazionalita).reduce((sum, n) => sum + n[i], 0); return total === 0 ? {} : Object.fromEntries(Object.keys(projectedNazionalita).map(n => [n, (projectedNazionalita[n][i] / total) * 100])) });
+            new Chart(document.getElementById('nazionalitaEvoluzionePercentualeChart'), { type: 'line', data: { labels: YEARS, datasets: Object.keys(projectedNazionalita).map((n, i) => ({ label: n, data: nazionalitaPercentuali.map(d => d[n]), borderColor: CHART_COLORS[i % CHART_COLORS.length], backgroundColor: CHART_COLORS[i % CHART_COLORS.length] + '80', fill: true })) }, options: defaultAreaOptions(true, true) });
 
-            const datasetsForChart = [
-                 ...Object.keys(nazionalitaAnnoData).map((n, i) => ({
-                    label: n + " (Reale)",
-                    data: nazionalitaDatasets_real[n],
-                    backgroundColor: CHART_COLORS[i % CHART_COLORS.length],
-                    stack: n
-                })),
-                ...Object.keys(nazionalitaAnnoData).map((n, i) => ({
-                    label: n + " (Proiezione)",
-                    data: nazionalitaDatasets_delta[n],
-                    backgroundColor: CHART_COLORS[i % CHART_COLORS.length] + '80', // lighter color
-                    stack: n
-                }))
-            ];
-
-            new Chart(document.getElementById('nazionalitaEvoluzioneChart'), {
-                type: 'bar',
-                data: { labels: YEARS, datasets: datasetsForChart },
-                options: { ...defaultBarOptions('x', true), plugins: { legend: { display: false }, tooltip: { callbacks: { title: tooltipTitleCallback }, mode: 'index', intersect: false } } }
-            });
-
-            const statusPerNazioneData = { labels: ['Eritrea', "Costa d'Avorio", 'Mali', 'Nigeria', 'Gambia', 'Pakistan', 'Bangladesh', 'El Salvador', 'Egitto', 'Perù'], datasets: [ { label: 'Titolare Protezione', data: [373, 363, 282, 179, 143, 120, 67, 17, 24, 8], backgroundColor: CHART_COLORS[1] }, { label: 'Richiedente Asilo', data: [245, 244, 275, 594, 405, 418, 378, 408, 437, 448], backgroundColor: CHART_COLORS[0] }, { label: 'Nessuna Domanda', data: [18, 35, 35, 114, 57, 114, 107, 240, 443, 927], backgroundColor: CHART_COLORS[2] }] };
+            const statusPerNazioneData = { labels: ["Costa d'Avorio", 'Eritrea', 'Mali', 'Nigeria', 'Gambia', 'Pakistan', 'Bangladesh', 'El Salvador', 'Egitto', 'Perù'], datasets: [ { label: 'Titolare Protezione', data: [363, 373, 282, 179, 143, 120, 67, 17, 24, 8], backgroundColor: CHART_COLORS[1] }, { label: 'Richiedente Asilo', data: [244, 245, 275, 594, 405, 418, 378, 408, 437, 448], backgroundColor: CHART_COLORS[0] }, { label: 'Nessuna Domanda', data: [35, 18, 35, 114, 57, 114, 107, 240, 443, 927], backgroundColor: CHART_COLORS[2] }] };
             new Chart(document.getElementById('statusPerNazioneChart'), { type: 'bar', data: statusPerNazioneData, options: defaultBarOptions('y', true) });
             
+            new Chart(document.getElementById('scolaritaChart'), { type: 'bar', data: { labels: ['Medie Sup.', 'Medie Inf.', 'Elementare', 'Analfabeta', 'Laurea', 'Non Spec.'], datasets: [{ label: 'Utenti', data: [5482, 4245, 3344, 1955, 1482, 1011], backgroundColor: CHART_COLORS[1] }] }, options: defaultBarOptions() });
+            const scolaritaAnnoData = [[12,35,32,56,79,83], [61,148,30,121,238,50], [33,75,39,83,135,20], [77,73,38,83,138,8], [56,132,62,125,180,7], [55,108,54,98,176,12], [47,88,40,87,157,24], [56,92,45,102,213,114], [40,84,41,85,187,84], [37,86,50,96,214,128], [37,79,44,89,161,94], [31,76,36,84,203,136], [29,66,50,66,177,118], [58,103,75,137,276,211], [64,136,89,150,377,273], [75,138,94,182,452,246], [45,110,79,116,323,181], [53,95,89,109,305,167], [22,46,33,43,120,52], [30,75,57,51,199,69], [53,115,70,93,311,110], [103,184,121,173,569,189], [121,232,148,222,765,229], [100,166,119,166,693,209]];
+            const scolaritaPercentuale = scolaritaAnnoData.map(row => { const total = row.reduce((s, c) => s + c, 1); return row.map(v => (v / total) * 100); });
+            new Chart(document.getElementById('scolaritaEvoluzioneChart'), { type: 'line', data: { labels: YEARS, datasets: [{ label: 'Laurea', data: scolaritaPercentuale.map(r => r[2]), borderColor: CHART_COLORS[0], fill: false }, { label: 'Medie Sup.', data: scolaritaPercentuale.map(r => r[4]), borderColor: CHART_COLORS[1], fill: false }, { label: 'Analfabeta', data: scolaritaPercentuale.map(r => r[0]), borderColor: CHART_COLORS[2], fill: false }] }, options: defaultBarOptions() });
+
         });
     </script>
 </body>
 </html>
+
