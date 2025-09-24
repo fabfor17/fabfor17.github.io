@@ -197,7 +197,7 @@
 
         <section id="capitolo3">
             <h2>Capitolo 3: Origini, Status e Capitale Umano</h2>
-            <p class="section-intro">Le provenienze degli utenti disegnano una mappa delle crisi mondiali. L'analisi temporale, con la proiezione per il 2025, conferma l'intensificarsi dei flussi dall'Africa e dall'Asia. Questo capitolo esplora anche lo status legale e il bagaglio di istruzione delle persone che arrivano.</p>
+            <p class="section-intro">Le provenienze degli utenti disegnano una mappa delle crisi mondiali. L'analisi temporale, basata sui dati reali, conferma l'intensificarsi dei flussi dall'Africa e dall'Asia. Questo capitolo esplora anche lo status legale e il bagaglio di istruzione delle persone che arrivano.</p>
             
             <h4>Provenienze e Status Legale: Dati Aggregati (2002-2025)</h4>
              <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -218,11 +218,11 @@
             <h4>Evoluzione delle Provenienze e Status Incrociati</h4>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-12">
                 <div class="card">
-                    <h3>Flussi delle Principali Nazionalità per Anno (Valori Assoluti, con proiezione 2025)</h3>
+                    <h3>Flussi delle Principali Nazionalità per Anno (Valori Assoluti)</h3>
                     <div class="small-chart-container">
                         <canvas id="nazionalitaEvoluzioneAssolutaChart"></canvas>
                     </div>
-                    <p class="text-sm text-gray-600 mt-4">Questa visualizzazione ad area mostra le "ondate" migratorie: l'onda latinoamericana (es. El Salvador, Perù) e la successiva crescita massiccia delle nazionalità africane e asiatiche.</p>
+                    <p class="text-sm text-gray-600 mt-4">Questa visualizzazione ad area mostra le "ondate" migratorie: l'onda latinoamericana (es. El Salvador, Perù) e la successiva crescita massiccia delle nazionalità africane e asiatiche. I dati del 2025 non sono proiettati.</p>
                 </div>
                  <div class="card">
                     <h3>Flussi delle Principali Nazionalità per Anno (Valori Percentuali)</h3>
@@ -361,21 +361,18 @@
                 'Bangladesh': [1,5,5,4,15,33,24,18,20,48,33,53,39,60,54,39,39,19,18,21,26,25,67,68],
                 'Costa d\'Avorio': [2,32,20,103,51,19,36,40,39,53,35,45,29,63,60,54,37,9,7,8,7,9,4,7],
                 'Egitto': [0,1,1,0,1,0,2,4,4,8,17,11,14,12,14,24,21,19,6,43,109,375,239,251],
-                'El Salvador': [1,0,0,0,0,0,2,3,6,2,2,10,9,39,61,115,104,150,102,112,121,144,142,151],
-                'Eritrea': [9,11,4,3,10,19,17,18,22,18,46,78,57,43,29,21,9,5,1,2,3,12,10,9],
-                'Gambia': [0,0,0,0,0,0,0,0,0,0,1,14,66,68,93,68,30,19,5,2,7,88,55,36],
-                'Mali': [0,0,2,2,5,3,6,21,10,14,9,12,17,35,42,40,19,10,2,1,5,52,49,38],
-                'Nigeria': [4,3,2,1,2,2,6,2,4,15,33,73,108,159,143,96,53,47,35,26,15,20,10,5],
-                'Pakistan': [0,0,1,0,0,0,0,0,0,2,8,48,62,53,52,47,2,6,2,5,12,143,135,122],
-                'Perù': [93,142,76,150,156,115,93,116,68,56,42,28,20,18,12,10,7,5,2,1,1,2,0,0],
-                'Altro': [185,413,169,54,167,256,220,332,296,339,267,238,138,280,393,497,396,423,196,145,178,134,228,321]
+                'El Salvador': [1,0,0,0,0,0,2,3,6,2,2,10,9,39,61,115,104,159,43,49,59,71,61,40],
+                'Eritrea': [50,105,89,55,103,82,23,62,44,18,12,11,26,22,14,11,3,5,1,2,0,6,6,1],
+                'Gambia': [3,16,21,11,29,30,34,98,52,33,18,16,31,66,110,96,68,43,25,18,17,21,8,10],
+                'Mali': [0,0,2,2,5,3,6,21,10,30,61,77,48,102,123,141,53,36,12,18,12,22,8,3],
+                'Nigeria': [7,35,21,21,96,82,55,50,33,48,42,41,48,50,104,143,108,91,35,69,47,26,19,16],
+                'Pakistan': [0,1,0,2,6,9,40,44,34,28,31,31,33,92,93,52,47,62,26,52,70,42,55,54],
+                'Perù': [0,0,0,0,0,1,0,1,0,0,0,2,1,2,1,4,17,63,23,25,137,411,589,492],
+                'Altro': [197,423,194,180,222,192,181,218,245,288,192,194,180,260,366,375,232,162,77,107,204,242,518,425]
             };
-
-            const projectedNazionalita = {};
-            Object.keys(nazionalitaAnnoData).forEach(n => { projectedNazionalita[n] = [...nazionalitaAnnoData[n].slice(0, -1), projectValue(nazionalitaAnnoData[n][23])] });
-            new Chart(document.getElementById('nazionalitaEvoluzioneAssolutaChart'), { type: 'line', data: { labels: YEARS, datasets: Object.keys(projectedNazionalita).map((n, i) => ({ label: n, data: projectedNazionalita[n], borderColor: CHART_COLORS[i % CHART_COLORS.length], backgroundColor: CHART_COLORS[i % CHART_COLORS.length] + '80', fill: true })) }, options: defaultAreaOptions(true, false) });
-            const nazionalitaPercentuali = YEARS.map((_, i) => { const total = Object.values(projectedNazionalita).reduce((sum, n) => sum + n[i], 0); return total === 0 ? {} : Object.fromEntries(Object.keys(projectedNazionalita).map(n => [n, (projectedNazionalita[n][i] / total) * 100])) });
-            new Chart(document.getElementById('nazionalitaEvoluzionePercentualeChart'), { type: 'line', data: { labels: YEARS, datasets: Object.keys(projectedNazionalita).map((n, i) => ({ label: n, data: nazionalitaPercentuali.map(d => d[n]), borderColor: CHART_COLORS[i % CHART_COLORS.length], backgroundColor: CHART_COLORS[i % CHART_COLORS.length] + '80', fill: true })) }, options: defaultAreaOptions(true, true) });
+            new Chart(document.getElementById('nazionalitaEvoluzioneAssolutaChart'), { type: 'line', data: { labels: YEARS, datasets: Object.keys(nazionalitaAnnoData).map((n, i) => ({ label: n, data: nazionalitaAnnoData[n], borderColor: CHART_COLORS[i % CHART_COLORS.length], backgroundColor: CHART_COLORS[i % CHART_COLORS.length] + '80', fill: true })) }, options: defaultAreaOptions(true, false) });
+            const nazionalitaPercentuali = YEARS.map((_, i) => { const total = Object.values(nazionalitaAnnoData).reduce((sum, n) => sum + n[i], 0); return total === 0 ? {} : Object.fromEntries(Object.keys(nazionalitaAnnoData).map(n => [n, (nazionalitaAnnoData[n][i] / total) * 100])) });
+            new Chart(document.getElementById('nazionalitaEvoluzionePercentualeChart'), { type: 'line', data: { labels: YEARS, datasets: Object.keys(nazionalitaAnnoData).map((n, i) => ({ label: n, data: nazionalitaPercentuali.map(d => d[n]), borderColor: CHART_COLORS[i % CHART_COLORS.length], backgroundColor: CHART_COLORS[i % CHART_COLORS.length] + '80', fill: true })) }, options: defaultAreaOptions(true, true) });
 
             const statusPerNazioneData = { labels: ["Costa d'Avorio", 'Eritrea', 'Mali', 'Nigeria', 'Gambia', 'Pakistan', 'Bangladesh', 'El Salvador', 'Egitto', 'Perù'], datasets: [ { label: 'Titolare Protezione', data: [363, 373, 282, 179, 143, 120, 67, 17, 24, 8], backgroundColor: CHART_COLORS[1] }, { label: 'Richiedente Asilo', data: [244, 245, 275, 594, 405, 418, 378, 408, 437, 448], backgroundColor: CHART_COLORS[0] }, { label: 'Nessuna Domanda', data: [35, 18, 35, 114, 57, 114, 107, 240, 443, 927], backgroundColor: CHART_COLORS[2] }] };
             new Chart(document.getElementById('statusPerNazioneChart'), { type: 'bar', data: statusPerNazioneData, options: defaultBarOptions('y', true) });
