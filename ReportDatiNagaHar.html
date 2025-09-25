@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisi Socio-Demografica Utenti Naga Har (2002-2025)</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --text-color: #1f2937;
+            --bg-color: #f9fafb;
+            --border-color: #e5e7eb;
+            --nav-bg-color: #ffffff;
+            --nav-width: 260px;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            line-height: 1.7;
+        }
+        .navigation {
+            width: var(--nav-width);
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            background-color: var(--nav-bg-color);
+            border-right: 1px solid var(--border-color);
+            padding: 2rem 1.5rem;
+            overflow-y: auto;
+            box-sizing: border-box;
+        }
+        .navigation h2 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 0 0 1.5rem 0;
+            color: var(--primary-color);
+        }
+        .navigation ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .navigation li {
+            margin-bottom: 0.5rem;
+        }
+        .navigation a {
+            text-decoration: none;
+            color: #4b5563;
+            font-size: 0.875rem; /* Font più piccolo */
+            padding: 0.25rem 0.5rem; /* Spaziatura ridotta */
+            display: block;
+            border-radius: 4px;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        .navigation a:hover,
+        .navigation a.active {
+            background-color: #eff6ff;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+        .main-content {
+            margin-left: var(--nav-width);
+            padding: 2rem 3rem 4rem 3rem;
+            width: calc(100% - var(--nav-width));
+            box-sizing: border-box;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #111827;
+        }
+        h1 + p {
+            font-style: italic;
+            color: #6b7280;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 3rem 0 1.5rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-color);
+        }
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 2rem 0 1rem 0;
+            color: #1e3a8a;
+        }
+        p, li {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 0.75rem;
+            text-align: left;
+        }
+        th {
+            background-color: #f3f4f6;
+            font-weight: 700;
+        }
+        tbody tr:nth-child(even) {
+            background-color: #f9fafb;
+        }
+        caption {
+            caption-side: bottom;
+            text-align: left;
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-top: 0.5rem;
+        }
+        strong, b {
+            font-weight: 700;
+            color: #172554;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin: 2rem auto;
+            height: 450px;
+        }
+        .small-chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 1.5rem auto;
+            height: 350px;
+        }
+        .chart-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+        .chart-caption {
+            font-size: 0.875rem;
+            color: #6b7280;
+            text-align: center;
+            margin-top: -1.5rem;
+            margin-bottom: 2rem;
+        }
+        code {
+            font-family: 'Roboto Mono', monospace;
+            background-color: #e0f2fe;
+            color: #0c4a6e;
+            padding: 0.1rem 0.3rem;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+        .code-green {
+            color: #15803d;
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        @media (max-width: 900px) {
+            body {
+                flex-direction: column;
+            }
+            .navigation {
+                position: static;
+                width: 100%;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+            }
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navigation">
+        <h2>Indice del Report</h2>
+        <ul>
+            <li><a href="#sommario">Sommario Esecutivo</a></li>
+            <li><a href="#capitolo1">Cap. 1: Dinamiche dei Flussi</a></li>
+            <li><a href="#capitolo2">Cap. 2: Profilo Demografico</a></li>
+            <li><a href="#capitolo3">Cap. 3: Origini Geografiche</a></li>
+            <li><a href="#capitolo4">Cap. 4: Contesto Sociale</a></li>
+            <li><a href="#capitolo5">Cap. 5: Capitale Umano</a></li>
+            <li><a href="#capitolo6">Cap. 6: Status Giuridico</a></li>
+            <li><a href="#capitolo7">Cap. 7: Metodologia</a></li>
+            <li><a href="#conclusioni">Conclusioni</a></li>
+        </ul>
+    </nav>
+    <main class="main-content">
+        <h1>Analisi Socio-Demografica dell'Utenza del Centro Naga Har (2002-2025)</h1>
+        <p>Evoluzione, Profili e Sfide Strutturali</p>
+
+        <h2 id="sommario">Sommario Esecutivo</h2>
+        <p>Il presente report offre un'analisi socio-demografica approfondita dell'utenza che si è rivolta al Centro Naga Har nel periodo compreso tra il 2002 e il 2025. Basandosi su un'analisi longitudinale di dati quantitativi, il documento delinea l'evoluzione dei flussi migratori, le trasformazioni dei profili demografici e le sfide strutturali legate all'integrazione di cittadini stranieri, richiedenti asilo e rifugiati. L'analisi rivela una serie di tendenze macroscopiche di fondamentale importanza.</p>
+        <p><b>In primo luogo, si osserva una crescita esponenziale del numero di utenti</b>, un fenomeno non lineare ma caratterizzato da picchi distinti che corrispondono a crisi geopolitiche globali e a cambiamenti nelle politiche migratorie. In particolare, il periodo post-pandemico, dal 2022 in poi, ha registrato un'impennata senza precedenti, segnalando l'apertura di nuovi e intensi corridoi migratori verso l'Italia.</p>
+        <p><b>In secondo luogo, il profilo demografico dell'utenza ha subito una significativa trasformazione.</b> Si assiste a un progressivo innalzamento dell'età media e a un notevole incremento della componente femminile. Questo duplice mutamento suggerisce una transizione da modelli migratori "pionieristici", prevalentemente maschili, a fasi più mature che includono ricongiungimenti familiari e progetti migratori autonomi femminili, con profonde implicazioni per la tipologia di servizi richiesti.</p>
+        <p><b>In terzo luogo, la geografia delle origini si è radicalmente diversificata.</b> Se nei primi anni Duemila l'utenza proveniva principalmente da nazioni africane segnate da conflitti, il panorama attuale è molto più eterogeneo, con un'emergenza preponderante di flussi dall'Egitto e, in modo ancora più marcato, dall'America Latina. Questa variazione non rappresenta un mero dato geografico, ma funge da indicatore per i differenti bisogni legali e sociali delle diverse comunità.</p>
+        <p><b>In quarto luogo, emerge con drammatica chiarezza il fenomeno del "brain waste" o dequalificazione professionale.</b> Un'ampia porzione dell'utenza, in possesso di titoli di studio medio-alti e competenze qualificate acquisite nei paesi d'origine, si ritrova in Italia in stato di disoccupazione o impiegata in lavori non qualificati. Questo divario tra potenziale e realtà evidenzia un fallimento strutturale del sistema di integrazione nel riconoscere e valorizzare il capitale umano straniero.</p>
+        <p><b>Infine, l'analisi conferma il ruolo dello status giuridico come principale fattore determinante della vulnerabilità</b> e principale ostacolo all'integrazione socio-economica. La condizione di richiedente asilo o di persona priva di un permesso di soggiorno valido si correla strettamente con la disoccupazione, la precarietà abitativa e l'esclusione sociale. Particolarmente allarmante è l'elevato tasso di disoccupazione anche tra i titolari di protezione, suggerendo che l'ottenimento di uno status legale non è, di per sé, sufficiente a garantire un percorso di inclusione efficace.</p>
+        
+        <h2 id="capitolo1">Capitolo 1: Dinamiche dei Flussi di Accesso al Centro (2002-2025)</h2>
+        <p>L'analisi quantitativa dei flussi di accesso al Centro Naga Har costituisce il punto di partenza fondamentale per comprendere la portata e la natura dei fenomeni migratori osservati. Questo capitolo esamina il volume degli arrivi su base annua e la loro distribuzione settimanale, fornendo un quadro contestuale indispensabile per le successive analisi socio-demografiche.</p>
+        
+        <h3>1.1 Analisi dei Primi Accessi Annuali: Un Barometro delle Crisi Globali</h3>
+        <p>L'andamento del numero di primi accessi al centro tra il 2002 e il 2025 non è stato lineare, ma ha seguito un percorso scandito da eventi geopolitici internazionali e da mutamenti normativi a livello nazionale ed europeo. I dati mostrano come il centro abbia agito da recettore immediato delle conseguenze di crisi umanitarie e di cambiamenti nelle rotte migratorie. È possibile identificare quattro fasi distinte in questo arco temporale.</p>
+        
+        <div class="chart-container">
+            <canvas id="accessiEtaChart"></canvas>
+        </div>
+        <p class="chart-caption"><strong>Grafico 1.1:</strong> Andamento dei primi accessi (barre) e dell'età media (linea) dal 2002 al 2025. La barra del 2025 è divisa: in blu i dati reali, in azzurro la proiezione fino a fine anno, indicando un potenziale nuovo record di accessi.</p>
+
+        <p>Una <strong>prima fase di assestamento (2002-2014)</strong> è caratterizzata da un numero di accessi in crescita ma relativamente stabile, che passa dai 297 del 2002 ai 506 del 2014. Questo periodo riflette flussi migratori costanti ma ancora contenuti, legati a situazioni di instabilità cronica in diverse aree del mondo.</p>
+        <p>La <strong>seconda fase, corrispondente al picco della crisi migratoria nel Mediterraneo (2015-2017)</strong>, segna un'impennata drammatica. Gli accessi quasi raddoppiano in tre anni, passando dagli 860 del 2015 ai 1.187 del 2017. Questo aumento è direttamente correlabile alla guerra in Siria, alla destabilizzazione della Libia e all'intensificarsi della rotta del Mediterraneo centrale.</p>
+        <p>Segue una <strong>terza fase di contrazione e impatto pandemico (2018-2020)</strong>. Il numero di accessi diminuisce a 854 nel 2018, un calo riconducibile agli accordi tra Italia e Libia e all'introduzione dei "decreti sicurezza". La contrazione raggiunge il suo punto più basso nel 2020, con soli 316 accessi, un crollo chiaramente attribuibile alle restrizioni alla mobilità globale imposte dalla pandemia di COVID-19.</p>
+        <p>Infine, la <strong>quarta fase, quella della ripresa e della nuova ondata (2021-2025)</strong>, mostra una ripresa rapidissima che culmina in un'ondata di accessi senza precedenti. I numeri salgono a 752 nel 2022 e raggiungono i massimi storici nel 2023 (1.339), 2024 (1.717) e 2025 (proiezione di ~2.032). Questo afflusso eccezionale segnala un cambiamento fondamentale nelle dinamiche migratorie, spinto da una combinazione di fattori: la fine delle restrizioni pandemiche, il deterioramento delle condizioni economiche e politiche in molti paesi di origine e l'apertura di nuove rotte, in particolare dall'America Latina.</p>
+        
+        <table>
+            <caption>Tabella 1.1: Numero di Primi Accessi per Anno (2002-2025), Valori Assoluti e Variazione Percentuale Anno su Anno.</caption>
+            <thead>
+                <tr>
+                    <th>Anno</th>
+                    <th>Accessi Totali</th>
+                    <th>Variazione Percentuale</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>2002</td><td>297</td><td>-</td></tr>
+                <tr><td>2003</td><td>648</td><td>+118.2%</td></tr>
+                <tr><td>2004</td><td>385</td><td>-40.6%</td></tr>
+                <tr><td>2005</td><td>417</td><td>+8.3%</td></tr>
+                <tr><td>2006</td><td>562</td><td>+34.8%</td></tr>
+                <tr><td>2007</td><td>503</td><td>-10.5%</td></tr>
+                <tr><td>2008</td><td>453</td><td>-9.9%</td></tr>
+                <tr><td>2009</td><td>622</td><td>+37.3%</td></tr>
+                <tr><td>2010</td><td>521</td><td>-16.2%</td></tr>
+                <tr><td>2011</td><td>611</td><td>+17.3%</td></tr>
+                <tr><td>2012</td><td>504</td><td>-17.5%</td></tr>
+                <tr><td>2013</td><td>566</td><td>+12.3%</td></tr>
+                <tr><td>2014</td><td>506</td><td>-10.6%</td></tr>
+                <tr><td>2015</td><td>860</td><td>+69.9%</td></tr>
+                <tr><td>2016</td><td>1089</td><td>+26.6%</td></tr>
+                <tr><td>2017</td><td>1187</td><td>+9.0%</td></tr>
+                <tr><td>2018</td><td>854</td><td>-28.1%</td></tr>
+                <tr><td>2019</td><td>818</td><td>-4.2%</td></tr>
+                <tr><td>2020</td><td>316</td><td>-61.4%</td></tr>
+                <tr><td>2021</td><td>481</td><td>+52.2%</td></tr>
+                <tr><td>2022</td><td>752</td><td>+56.3%</td></tr>
+                <tr><td>2023</td><td>1339</td><td>+78.1%</td></tr>
+                <tr><td>2024</td><td>1717</td><td>+28.2%</td></tr>
+                <tr><td>2025</td><td>1453</td><td>-15.4% (dato parziale)</td></tr>
+                <tr><td><strong>Totale</strong></td><td><strong>17541</strong></td><td></td></tr>
+            </tbody>
+        </table>
+
+        <h3>1.2 Distribuzione Settimanale degli Accessi: Modelli Operativi e Pressione sui Servizi</h3>
+        <p>L'analisi della distribuzione degli accessi nei giorni della settimana offre preziose indicazioni sui modelli di comportamento dell'utenza e sulla pressione operativa che grava sui servizi del centro.</p>
+
+        <div class="chart-grid">
+            <div>
+                <div class="small-chart-container">
+                    <canvas id="giorniAssolutiChart"></canvas>
+                </div>
+                <p class="chart-caption"><strong>Grafico 1.2a:</strong> Distribuzione Settimanale (Valori Assoluti). Si nota il crollo degli accessi il Lunedì (blu) dal 2020.</p>
+            </div>
+            <div>
+                <div class="small-chart-container">
+                    <canvas id="giorniPercentualiChart"></canvas>
+                </div>
+                <p class="chart-caption"><strong>Grafico 1.2b:</strong> Distribuzione Settimanale (Valori Percentuali). Il peso degli altri giorni cresce dopo la chiusura del lunedì.</p>
+            </div>
+        </div>
+
+        <p>Il crollo quasi totale degli accessi di lunedì, visibile nel grafico a partire dal 2020, non è legato a un modello di comportamento dell'utenza, ma a un <strong>cambiamento organizzativo interno</strong>. In seguito alla pandemia di COVID-19, il Centro Naga Har ha modificato i propri orari, cessando l'apertura al pubblico il lunedì e concentrando le attività dal martedì al venerdì. Questa decisione ha portato a una naturale ridistribuzione del flusso di utenti sugli altri giorni della settimana, intensificando la pressione sui servizi in particolare nella giornata di martedì.</p>
+        
+        <table>
+             <caption>Tabella 1.2: Statistica Aggregata degli Accessi per Giorno della Settimana (2002-2025).</caption>
+            <thead>
+                <tr>
+                    <th>Giorno della Settimana</th>
+                    <th>Valore Assoluto</th>
+                    <th>Valore Percentuale</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Lunedì</td><td>2424</td><td>13,9%</td></tr>
+                <tr><td>Martedì</td><td>4467</td><td>25,6%</td></tr>
+                <tr><td>Mercoledì</td><td>3388</td><td>19,4%</td></tr>
+                <tr><td>Giovedì</td><td>2950</td><td>16,9%</td></tr>
+                <tr><td>Venerdì</td><td>2942</td><td>16,9%</td></tr>
+                <tr><td>Sabato</td><td>511</td><td>2,9%</td></tr>
+                <tr><td><strong>Totale</strong></td><td><strong>17682</strong></td><td><strong>100,0%</strong></td></tr>
+            </tbody>
+        </table>
+
+        <h2 id="capitolo2">Capitolo 2: Profilo Demografico dell'Utenza: Genere ed Età</h2>
+        <p>Questo capitolo si concentra sulle caratteristiche demografiche fondamentali dell'utenza: la composizione per genere e la struttura per età. Questi due indicatori rivelano tendenze evolutive profonde che hanno implicazioni dirette sulla natura dei bisogni e sulla pianificazione dei servizi.</p>
+
+        <h3>2.1 Composizione per Genere: La Crescente Presenza Femminile</h3>
+        <p>L'analisi della distribuzione per genere conferma che l'utenza è rimasta prevalentemente maschile (83,4%). Tuttavia, un'analisi statica maschererebbe la tendenza più significativa: la progressiva e costante femminilizzazione dell'utenza. Se nei primi anni Duemila la percentuale di donne si attestava intorno al 10-12%, negli anni più recenti ha raggiunto picchi vicini al 20%.</p>
+        
+        <div class="chart-grid">
+             <div>
+                <div class="small-chart-container">
+                    <canvas id="genereAssolutoChart"></canvas>
+                </div>
+                <p class="chart-caption"><strong>Grafico 2.1a:</strong> Distribuzione per Genere (Valori Assoluti per anno).</p>
+            </div>
+            <div>
+                <div class="small-chart-container">
+                    <canvas id="generePercentualeChart"></canvas>
+                </div>
+                <p class="chart-caption"><strong>Grafico 2.1b:</strong> Distribuzione per Genere (Valori Percentuali per anno).</p>
+            </div>
+        </div>
+
+        <p>Questo cambiamento indica una trasformazione nei progetti migratori, da migrazioni "pionieristiche" maschili a una seconda fase più orientata alla stabilizzazione e al radicamento, che include ricongiungimenti familiari o progetti migratori autonomi femminili. Tale evoluzione richiede un'offerta di servizi più articolata e sensibile alle questioni di genere, dalla salute riproduttiva al supporto per le vittime di tratta e violenza, fino alla mediazione familiare.</p>
+        
+        <h3>2.2 Struttura per Età: Un'Utenza che Matura</h3>
+        <p>L'analisi dell'età rivela un progressivo "invecchiamento" o "maturazione" della popolazione di riferimento. L'età media al momento del primo accesso mostra un trend di crescita chiaro e sostenuto, passando da un intervallo di 27-29 anni nel periodo 2002-2016 fino a raggiungere i 34,6 anni nel 2025.</p>
+
+        <div class="small-chart-container">
+            <canvas id="etaEvoluzioneChart"></canvas>
+        </div>
+        <p class="chart-caption"><strong>Grafico 2.2:</strong> Evoluzione percentuale delle principali fasce d'età per anno. Si osserva la riduzione della fascia 18-30 anni (blu) e la contemporanea crescita della fascia 31-45 anni (verde).</p>
+
+        <p>Questa tendenza è confermata dalla distribuzione per fasce d'età. L’incidenza percentuale della fascia 18-30 anni è diminuita nel tempo a favore della fascia 31-45 anni, che ha superato il 45% del totale negli anni più recenti. Un'utenza più adulta presenta bisogni sanitari differenti, e storie migratorie potenzialmente più complesse, con percorsi lavorativi e familiari già consolidati nei paesi d'origine che devono essere ricostruiti in un nuovo contesto.</p>
+        
+        <table>
+            <caption>Tabella 2.2: Riepilogo Aggregato della Struttura per Età (2002-2025).</caption>
+            <thead>
+                <tr><th>Fascia d'Età</th><th>Valore Assoluto</th><th>Valore Percentuale</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>0-17</td><td>255</td><td>1,5%</td></tr>
+                <tr><td>18-30</td><td>10325</td><td>60,2%</td></tr>
+                <tr><td>31-45</td><td>5298</td><td>30,9%</td></tr>
+                <tr><td>46-60</td><td>1045</td><td>6,1%</td></tr>
+                <tr><td>60+</td><td>189</td><td>1,1%</td></tr>
+                <tr><td><strong>Totale</strong></td><td><strong>17112</strong></td><td><strong>100,0%</strong></td></tr>
+            </tbody>
+        </table>
+
+        <h2 id="capitolo3">Capitolo 3: Mappatura delle Origini Geografiche</h2>
+        <p>L'analisi della nazionalità di provenienza è una delle variabili più significative per comprendere la natura e l'evoluzione dei flussi migratori. La composizione geografica dell'utenza si è modificata profondamente, riflettendo crisi e conflitti in diverse aree del globo.</p>
+
+        <h3>3.1 Evoluzione delle Principali Nazionalità: Dalle Guerre Africane alle Crisi Latinoamericane</h3>
+        <p>L'analisi dei dati sulla nazionalità rivela una transizione epocale. È possibile suddividere il periodo 2002-2025 in tre "ere" migratorie distinte.</p>
+
+        <div class="chart-container">
+            <canvas id="nazionalitaEvoluzionePercentualeChart"></canvas>
+        </div>
+        <p class="chart-caption"><strong>Grafico 3.1:</strong> Evoluzione della composizione delle principali nazionalità (valori percentuali, 2002-2025). Il grafico evidenzia la riduzione della quota di alcune nazionalità e la crescita esponenziale di altre.</p>
+        
+        <p>La <b>prima è l'era post-conflitto (primi anni 2000)</b>, con utenza proveniente da paesi come Eritrea, Sudan, Sierra Leone e Liberia. La <b>seconda è l'era della rotta del Mediterraneo centrale (metà anni 2000 - fine anni 2010)</b>, con un massiccio afflusso da Nigeria, Gambia, Mali, Senegal, insieme a un flusso consolidato da Pakistan e Bangladesh. La <b>terza e più recente è l'era della diversificazione globale (fine anni 2010 - oggi)</b>, definita dall'impennata di nazionalità come Egitto, e soprattutto Perù ed El Salvador dall'America Latina.</p>
+        <p>Questa evoluzione non è una semplice curiosità geografica; essa funge da proxy per i bisogni legali e sociali dell'utenza. Monitorare la nazionalità permette al centro di anticipare le competenze necessarie, dal diritto d'asilo al diritto del lavoro, e di adattare la propria offerta di servizi in modo proattivo.</p>
+        
+        <div class="small-chart-container" style="height: 400px;">
+            <canvas id="nazionalitaChart"></canvas>
+        </div>
+        <p class="chart-caption"><strong>Grafico 3.2:</strong> Le 10 principali nazionalità per numero di accessi (Aggregato 2002-2025).</p>
+        
+        <table>
+            <caption>Tabella 3.1: Le 10 Principali Nazionalità per Numero di Accessi (Aggregato 2002-2025).</caption>
+            <thead>
+                <tr><th>Rango</th><th>Nazionalità</th><th>Valore Assoluto</th><th>Percentuale sul Totale</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td>Perù</td><td>1770</td><td>11,2%</td></tr>
+                <tr><td>2</td><td>Nigeria</td><td>1288</td><td>8,1%</td></tr>
+                <tr><td>3</td><td>Egitto</td><td>1178</td><td>7,4%</td></tr>
+                <tr><td>4</td><td>Pakistan</td><td>906</td><td>5,7%</td></tr>
+                <tr><td>5</td><td>Gambia</td><td>875</td><td>5,5%</td></tr>
+                <tr><td>6</td><td>El Salvador</td><td>838</td><td>5,3%</td></tr>
+                <tr><td>7</td><td>Mali</td><td>797</td><td>5,0%</td></tr>
+                <tr><td>8</td><td>Costa d'Avorio</td><td>770</td><td>4,9%</td></tr>
+                <tr><td>9</td><td>Eritrea</td><td>751</td><td>4,7%</td></tr>
+                <tr><td>10</td><td>Bangladesh</td><td>734</td><td>4,6%</td></tr>
+            </tbody>
+        </table>
+
+        <h2 id="capitolo4">Capitolo 4: Contesto Sociale e Struttura Familiare</h2>
+        <p>Per comprendere appieno il profilo dell'utenza, è necessario analizzare il contesto sociale e familiare. I dati sullo stato civile e sul numero di figli rivelano una realtà complessa, fatta di legami familiari solidi e responsabilità genitoriali, che spesso si estendono oltre i confini nazionali.</p>
+
+        <h3>4.1 Stato Civile: Oltre lo Stereotipo del "Single Male Migrant"</h3>
+        <p>L'analisi mostra che, sebbene la categoria "Celibe/Nubile" sia la più numerosa (62,8%), una quota molto significativa dell'utenza (27,4%) si dichiara "Coniugato/a". Questo dato, che indica che quasi un terzo degli utenti ha un partner stabile, scardina l'immagine semplificata del "single male migrant" e disegna un quadro di individui profondamente radicati in strutture familiari, spesso transnazionali. La migrazione di uno dei coniugi è frequentemente il primo passo di un progetto che prevede il ricongiungimento familiare, un processo che richiede un supporto legale e sociale specifico.</p>
+        
+        <div class="small-chart-container">
+            <canvas id="statoCivileChart"></canvas>
+        </div>
+        <p class="chart-caption"><strong>Grafico 4.1:</strong> Riepilogo aggregato dello stato civile (2002-2025).</p>
+
+        <h3>4.2 Carico Familiare: La Presenza Visibile e Invisibile dei Figli</h3>
+        <p>L'analisi del numero di figli rafforza il quadro di un'utenza con responsabilità familiari. Sebbene la maggioranza (67,4%) non abbia figli, una quota considerevole (32,6%) è composta da genitori. La presenza di quasi 6.000 genitori è un dato di enorme rilevanza, poiché comporta bisogni specifici e complessi, sia che i figli si trovino in Italia o nel paese d'origine. La condizione genitoriale agisce come un moltiplicatore di vulnerabilità, aggiungendo alla precarietà personale la responsabilità del benessere e del futuro dei propri figli, spesso sostenuti economicamente a distanza tramite rimesse.</p>
+
+        <div class="small-chart-container">
+            <canvas id="figliChart"></canvas>
+        </div>
+        <p class="chart-caption"><strong>Grafico 4.2:</strong> Riepilogo aggregato del numero di figli per utente (2002-2025).</p>
+
+        <h2 id="capitolo5">Capitolo 5: Capitale Umano e Percorsi Professionali</h2>
+        <p>Questo capitolo analizza il capitale umano degli utenti, esaminando il loro livello di istruzione e le loro competenze professionali, e confrontando questo potenziale con gli effettivi esiti occupazionali in Italia. I risultati evidenziano una drammatica dispersione di competenze e un significativo sottoutilizzo delle qualifiche.</p>
+
+        <h3>5.1 Livello di Istruzione: Un Profilo Bimodale</h3>
+        <p>Il profilo educativo dell'utenza presenta una distribuzione "a bilanciere", fortemente polarizzata. Da un lato, <b>oltre il 42% degli utenti ha un'istruzione medio-alta</b> (diploma di scuola media superiore o laurea), indicando un notevole potenziale in termini di capitale umano. Dall'altro, <b>oltre il 25% possiede bassi livelli di alfabetizzazione</b> (analfabeta o solo istruzione elementare), necessitando di interventi educativi di base. Questa polarizzazione rappresenta una sfida considerevole per i servizi di integrazione, che devono contemporaneamente offrire corsi di alfabetizzazione e supporto avanzato per il riconoscimento dei titoli di studio e l'inserimento lavorativo qualificato.</p>
+
+        <div class="chart-grid">
+            <div>
+                <div class="small-chart-container">
+                    <canvas id="scolaritaChart"></canvas>
+                </div>
+                <p class="chart-caption"><strong>Grafico 5.1a:</strong> Livello di Scolarità (Aggregato).</p>
+            </div>
+            <div>
+                <div class="small-chart-container">
+                    <canvas id="scolaritaEvoluzioneChart"></canvas>
+                </div>
+                <p class="chart-caption"><strong>Grafico 5.1b:</strong> Evoluzione Livello di Scolarità (% sul totale annuo).</p>
+            </div>
+        </div>
+        
+        <table>
+            <caption>Tabella 5.1: Livello di Scolarità (Aggregato 2002-2025).</caption>
+            <thead><tr><th>Livello di Scolarità</th><th>Valore Assoluto</th><th>Valore Percentuale</th></tr></thead>
+            <tbody>
+                <tr><td>Medie Superiori</td><td>5860</td><td>33,4%</td></tr>
+                <tr><td>Medie Inferiori</td><td>4084</td><td>23,3%</td></tr>
+                <tr><td>Elementare</td><td>2899</td><td>16,5%</td></tr>
+                <tr><td>Analfabeta</td><td>1588</td><td>9,1%</td></tr>
+                <tr><td>Laurea/Post-Laurea</td><td>1551</td><td>8,8%</td></tr>
+                <tr><td>Non Specificato</td><td>1559</td><td>8,9%</td></tr>
+                <tr><td><strong>Totale</strong></td><td><strong>17541</strong></td><td><strong>100,0%</strong></td></tr>
+            </tbody>
+        </table>
+
+        <h3>5.2 Il Fenomeno del "Brain Waste": Confronto tra Competenze Pregresse e Occupazione in Italia</h3>
+        <p>Il confronto tra l'occupazione nel paese d'origine e quella in Italia rivela in modo drammatico il fenomeno del "brain waste" (spreco di cervelli) o dequalificazione professionale. I dati mostrano un profondo scollamento tra le competenze possedute e le opportunità accessibili nel mercato del lavoro italiano. Mentre nei paesi di origine molti utenti erano impiegati in lavori qualificati (artigiani, commercianti, impiegati, professionisti), in Italia la categoria di gran lunga più rappresentata è quella del "Disoccupato" (50,5%). Anche tra coloro che lavorano, la maggioranza è impiegata in settori a bassa qualifica (servizi, pulizie, edilizia), indipendentemente dal titolo di studio posseduto. Questo divario evidenzia un fallimento strutturale del sistema di integrazione nel valorizzare il capitale umano straniero, a causa di barriere sistemiche come il complesso e costoso processo di riconoscimento dei titoli di studio, gli ostacoli linguistici e la discriminazione nel mercato del lavoro.</p>
+        
+        <h2 id="capitolo6">Capitolo 6: Status Giuridico e Fattori di Vulnerabilità Occupazionale</h2>
+        <p>Questo capitolo finale analizza l'intersezione tra nazionalità, status giuridico e condizione occupazionale, dimostrando come lo status legale sia il fulcro attorno al quale ruotano le opportunità di vita e di integrazione. La condizione giuridica non è solo una formalità burocratica, ma il principale fattore che determina l'accesso ai diritti, al lavoro e a un percorso di vita dignitoso.</p>
+
+        <h3>6.1 Status Giuridico e Corridoi Migratori</h3>
+        <p>L'analisi incrociata tra nazionalità e status giuridico rivela l'esistenza di "percorsi legali" distinti, quasi predeterminati dal paese di origine. Si delinea un <b>"percorso dell'asilo"</b>, tipico delle persone provenienti dall'Africa Sub-Sahariana e dall'Asia Meridionale (Nigeria, Gambia, Pakistan), dove la categoria predominante è "Richiedente Asilo". Parallelamente, emerge un <b>"percorso dell'irregolarità"</b>, che caratterizza i flussi dall'America Latina (Perù) e dal Nord Africa (Egitto), dove la categoria più numerosa è "Nessuna Domanda", indicando una condizione di soggiorno irregolare spesso legata a un ingresso regolare (es. per turismo) a cui non segue un permesso di soggiorno stabile. Questa differenziazione pre-determina il percorso di un migrante e i suoi diritti accessibili, creando disparità significative nell'accesso ai servizi e al mercato del lavoro.</p>
+        
+        <div class="chart-container" style="height: 500px;">
+            <canvas id="statusPerNazioneChart"></canvas>
+        </div>
+        <p class="chart-caption"><strong>Grafico 6.1:</strong> Distribuzione dello status giuridico per le principali nazionalità. Si noti l'alta incidenza di "Nessuna Domanda" (rosso) per Perù ed Egitto, e di "Richiedente Asilo" (blu) per la maggior parte delle altre nazionalità.</p>
+
+        <h3>6.2 Profilo Multidimensionale della Disoccupazione: Un'Analisi Intersezionale</h3>
+        <p>Dall'analisi emerge un ritratto composito dell'utente disoccupato tipico: è molto probabile che sia un <strong>richiedente asilo</strong> (39,3%), arrivato in Italia da <strong>meno di un anno</strong> (51,7%), con una conoscenza <strong>nulla o molto bassa dell'italiano</strong> (70,2%). Contrariamente ai preconcetti, non è necessariamente poco istruito, dato che la categoria più rappresentata tra i disoccupati è quella con un diploma di scuola media superiore (31,3%).</p>
+        <p>L'elemento più allarmante è che i <strong>titolari di protezione</strong> rappresentano il secondo gruppo più grande di disoccupati (26,3%). Questo svela una "trappola della precarietà": il lungo periodo di inattività forzata durante la procedura d'asilo, unito alla mancanza di percorsi di inserimento socio-lavorativo efficaci, può portare a una degradazione delle competenze e all'isolamento sociale. Di conseguenza, anche dopo aver ottenuto uno status legale, l'inserimento lavorativo rimane estremamente difficile.</p>
+        
+        <div class="small-chart-container">
+            <canvas id="statusGiuridicoChart"></canvas>
+        </div>
+        <p class="chart-caption"><strong>Grafico 6.2:</strong> Riepilogo aggregato dello Status Giuridico (2002-2025).</p>
+
+        <h2 id="capitolo7">Capitolo 7: Metodologia di Analisi e Preparazione dei Dati</h2>
+        <p>La validità e l'affidabilità dei risultati presentati in questo rapporto si fondano su un rigoroso processo di preparazione e analisi dei dati, articolato nelle seguenti fasi.</p>
+        <ol>
+            <li><strong>Aggregazione e Armonizzazione delle Fonti Dati:</strong> I dati grezzi sono stati forniti in tre file CSV distinti, coprenti rispettivamente i periodi 2001-2017, 2018-2020 e 2021-2025. Il primo passo è consistito nell'aggregazione di questi file in un unico dataset master. Durante questo processo sono state affrontate e risolte le disomogeneità strutturali, tra cui la variazione dei delimitatori (dal punto e virgola alla virgola) e le lievi differenze nelle intestazioni delle colonne (es. <span class="code-green">sex</span> vs. <span class="code-green">Sex</span>; <span class="code-green">data arrivo Har</span> vs. <span class="code-green">Data arrivo Naga</span>), che sono state standardizzate per garantire la coerenza.</li>
+            <li><strong>Gestione dei Valori Mancanti e Pulizia dei Dati:</strong> Il dataset aggregato presentava una significativa quantità di valori mancanti (celle vuote) in diverse colonne. Per mantenere l'integrità dell'analisi, è stata adottata la seguente strategia: i record con valori mancanti in una determinata colonna sono stati esclusi dai calcoli specifici per quella metrica, ma sono stati mantenuti nel conteggio totale per il calcolo delle percentuali. Nelle tabelle, tali valori sono stati raggruppati sotto la categoria "Non Specificato" o "Dato Mancante". I dati testuali sono stati sottoposti a pulizia per rimuovere caratteri superflui, spazi bianchi anomali e altre incongruenze.</li>
+            <li><strong>Normalizzazione e Categorizzazione dei Dati Testuali:</strong> Data l'elevata variabilità e la natura descrittiva di molti campi testuali, è stato condotto un approfondito lavoro di normalizzazione per rendere i dati analizzabili.
+                <ul>
+                    <li><strong>Nazionalità:</strong> Le voci sono state standardizzate per aggregare varianti. Ad esempio, <span class="code-green">Turchia kurdo</span> è stato ricondotto a <span class="code-green">Turchia</span> e <span class="code-green">sudan</span> è stato capitalizzato in <span class="code-green">Sudan</span>.</li>
+                    <li><strong>Status Giuridico:</strong> È stata creata una tassonomia unificata per raggruppare le numerose descrizioni dello status legale. Voci come <span class="code-green">RIC</span>, <span class="code-green">richiedente</span>, <span class="code-green">Ricorrente</span> e <span class="code-green">richiedente protezione</span> sono state consolidate nella categoria <span class="code-green">Richiedente Asilo</span>. Allo stesso modo, <span class="code-green">permesso umanitario</span>, <span class="code-green">protezione umanitaria</span>, <span class="code-green">protez. internazionale</span>, e <span class="code-green">protezione speciale</span> sono state raggruppate in <span class="code-green">Protezione Umanitaria/Speciale</span>. Questo ha permesso di creare un insieme pulito e confrontabile di status giuridici.</li>
+                    <li><strong>Scolarità e Occupazione:</strong> Le voci descrittive sono state mappate su categorie standard. Per la <span class="code-green">Scolarità</span>, si sono definite le classi: <span class="code-green">Analfabeta</span>, <span class="code-green">Elementare</span>, <span class="code-green">Medie Inferiori</span>, <span class="code-green">Medie Superiori</span>, <span class="code-green">Laurea/Università</span>. Per l'<span class="code-green">Occupazione</span>, le professioni sono state raggruppate in macro-settori come <span class="code-green">Agricoltura/Allevamento</span>, <span class="code-green">Edilizia/Costruzioni</span>, <span class="code-green">Artigianato/Manifattura</span>, <span class="code-green">Commercio/Ristorazione</span>, <span class="code-green">Servizi/Pulizie</span>, <span class="code-green">Professioni Intellettuali/Tecniche</span>, <span class="code-green">Studente</span> e <span class="code-green">Nessuna/Altro</span>.</li>
+                </ul>
+            </li>
+            <li><strong>Calcolo delle Variabili Derivate:</strong> Per arricchire l'analisi, sono state calcolate nuove variabili a partire dai dati esistenti:
+                <ul>
+                    <li><strong>Età:</strong> Calcolata come la differenza in anni interi tra la <span class="code-green">Data arrivo Naga</span> e la <span class="code-green">Data di nascita</span>. Questa variabile rappresenta l'età della persona al momento del primo contatto con il Centro.</li>
+                    <li><strong>Tempo Trascorso in Italia:</strong> Calcolato come la differenza in anni tra la <span class="code-green">Data arrivo Naga</span> e la <span class="code-green">Data arrivo in Italia</span>. Questa metrica funge da proxy per la durata della prima fase del percorso migratorio in Italia, prima di accedere ai servizi specializzati del Naga.</li>
+                </ul>
+            </li>
+            <li><strong>Gestione delle Date:</strong> I campi data (<span class="code-green">Data di nascita</span>, <span class="code-green">Data arrivo Naga</span>, <span class="code-green">Data arrivo in Italia</span>) presentavano una notevole eterogeneità di formati (<span class="code-green">gg/mm/aa</span>, <span class="code-green">gg-mese-aa</span>, <span class="code-green">mese-aa</span>, solo anno). È stato implementato un parser robusto per estrarre l'anno, il mese e il giorno da ciascun formato. Per le date incomplete (es. <span class="code-green">Mag-01</span> o <span class="code-green">00-00-92</span>), è stato estratto l'anno e, dove necessario per i calcoli di durata, sono stati imputati valori mediani (es. 15 giugno), con la dovuta trasparenza su questa assunzione. L'analisi copre il periodo dal 1° gennaio 2001 fino all'ultima data valida registrata, escludendo dati prospettici.</li>
+        </ol>
+
+        <h2 id="conclusioni">Conclusioni e Riflessioni Sintetiche</h2>
+        <p>L'analisi dei dati restituisce la cronaca di una trasformazione profonda e multidimensionale. I numeri tracciano i contorni di un fenomeno migratorio in costante evoluzione e mettono a nudo le criticità strutturali del sistema di accoglienza e integrazione in Italia. Dall'analisi emergono con forza tre sfide strutturali, interconnesse e di cruciale importanza.</p>
+        <p><b>La prima è lo sistematico spreco di capitale umano ("brain waste").</b> L'analisi ha mostrato in modo inequivocabile il divario tra le competenze e i titoli di studio posseduti da una larga parte dell'utenza e le loro reali opportunità nel mercato del lavoro italiano. Questo non rappresenta solo una perdita per gli individui, costretti alla dequalificazione e alla frustrazione, ma anche un'enorme perdita per la società italiana, che non riesce a intercettare e valorizzare questo potenziale.</p>
+        <p><b>La seconda è la centralità dello status giuridico come arbitro delle opportunità di vita.</b> La condizione legale determina in modo quasi deterministico il percorso di un individuo, confinando i richiedenti asilo e le persone senza documenti in una condizione di precarietà prolungata che ostacola ogni tentativo di integrazione. L'elevata disoccupazione anche tra i titolari di protezione è il sintomo più grave di un sistema che, anche quando garantisce un diritto, non riesce a creare le condizioni per il suo effettivo esercizio.</p>
+        <p><b>La terza è la necessità di rispondere ai bisogni di una popolazione demograficamente sempre più complessa.</b> L'aumento delle donne, dei nuclei familiari e delle persone in età più matura richiede un superamento dei modelli di accoglienza pensati per uomini singoli e giovani, e l'adozione di un approccio olistico che tenga conto della salute di genere, delle necessità pediatriche e delle dinamiche familiari transnazionali.</p>
+        <p>In conclusione, i dati raccolti ed elaborati in questo report forniscono un mandato chiaro. Per organizzazioni come il Naga, la sfida è duplice: continuare a fornire servizi diretti essenziali per tamponare le falle del sistema, e allo stesso tempo utilizzare l'evidenza prodotta dalla propria attività per un'azione di advocacy sempre più incisiva. I numeri, le tabelle e le percentuali qui presentate non sono astrazioni, ma rappresentano migliaia di storie individuali. La loro analisi rigorosa è il primo passo per trasformare queste storie in un appello al cambiamento, per la costruzione di politiche migratorie più giuste, lungimiranti ed efficaci.</p>
+    </main>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Funzione per osservare le sezioni e aggiornare il menu
+        const sections = document.querySelectorAll('h2');
+        const navLinks = document.querySelectorAll('.navigation a');
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href').substring(1) === entry.target.id) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, { rootMargin: '-20% 0px -80% 0px' });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+        
+        // --- INIZIO CONFIGURAZIONE GRAFICI ---
+        const FONT_COLOR = '#1f2937';
+        const GRID_COLOR = '#e5e7eb';
+        const CHART_COLORS = ['#3b82f6', '#10b981', '#ef4444', '#f97316', '#8b5cf6', '#ec4899', '#64748b', '#f59e0b', '#34d399', '#a78bfa', '#06b6d4', '#d946ef'];
+        const YEARS = Array.from({ length: 24 }, (_, i) => 2002 + i);
+        
+        const defaultBarOptions = (indexAxis = 'x', stacked = false, showLegend = true) => ({
+            responsive: true, maintainAspectRatio: false, indexAxis,
+            plugins: { legend: { display: showLegend, labels: { color: FONT_COLOR } }, tooltip: { mode: 'index', intersect: false } },
+            scales: { x: { ticks: { color: FONT_COLOR }, grid: { color: GRID_COLOR }, stacked }, y: { ticks: { color: FONT_COLOR }, grid: { color: GRID_COLOR }, stacked } },
+            interaction: { mode: 'index', intersect: false }
+        });
+        const defaultAreaOptions = (stacked = false, is100 = false) => {
+            const options = { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: FONT_COLOR } }, tooltip: { mode: 'index', intersect: false } }, scales: { x: { ticks: { color: FONT_COLOR }, grid: { color: GRID_COLOR } }, y: { ticks: { color: FONT_COLOR }, grid: { color: GRID_COLOR }, stacked: stacked } }, elements: { line: { tension: 0.3 }, point: { radius: 0 } }, interaction: { mode: 'index', intersect: false } };
+            if(is100) { options.scales.y.max = 100; options.scales.y.ticks.callback = value => Math.round(value) + '%'; }
+            return options;
+        };
+        const defaultPieOptions = (position = 'top') => ({ responsive: true, maintainAspectRatio: false, plugins: { legend: { position: position, labels: { color: FONT_COLOR } } } });
+        const projectionFactor = 365 / 261; // Proiezione basata su 261 giorni (fino al 18/09)
+        const projectValue = (value) => Math.round(value * projectionFactor);
+
+        // --- CAP 1: FLUSSI ---
+        const accessiData = [297, 648, 385, 417, 562, 503, 453, 622, 521, 611, 504, 566, 506, 860, 1089, 1187, 854, 818, 316, 481, 752, 1339, 1717, 1453];
+        const accessiProjected2025 = projectValue(accessiData[accessiData.length - 1]);
+        const accessiDelta2025 = accessiProjected2025 - accessiData[accessiData.length - 1];
+        const accessiDataForChart_real = [...accessiData];
+        const accessiDataForChart_delta = [...new Array(accessiData.length - 1).fill(0), accessiDelta2025];
+        const etaMediaData = [29.1, 27.95, 28.17, 27.06, 27.68, 27.08, 27.91, 27.8, 28.21, 28.11, 28.19, 29.22, 28.48, 28.31, 28.14, 29.42, 29.21, 31.1, 32.23, 33.48, 32.76, 33.59, 34.41, 34.6];
+        new Chart(document.getElementById('accessiEtaChart'), { type: 'bar', data: { labels: YEARS, datasets: [{ type: 'line', label: 'Età Media', data: etaMediaData, borderColor: CHART_COLORS[1], yAxisID: 'y1', tension: 0.3, fill: false, order: 0 }, { label: 'Accessi Reali', data: accessiDataForChart_real, backgroundColor: CHART_COLORS[0], yAxisID: 'y', order: 1, stack: 'accessi' }, { label: 'Proiezione Fine Anno', data: accessiDataForChart_delta, backgroundColor: '#a5b4fc', yAxisID: 'y', order: 1, stack: 'accessi' }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' }, tooltip: { mode: 'index', intersect: false } }, scales: { x: { stacked: true }, y: { type: 'linear', display: true, position: 'left', title: { display: true, text: 'Numero Accessi' }, stacked: true }, y1: { type: 'linear', display: true, position: 'right', grid: { drawOnChartArea: false }, title: { display: true, text: 'Età Media' } } } } });
+        const giorniData = { lun: [43, 140, 101, 118, 109, 87, 116, 126, 113, 114, 111, 127, 114, 154, 222, 219, 161, 150, 4, 1, 3, 3, 2, 2], mar: [59, 132, 62, 104, 106, 107, 70, 119, 101, 121, 101, 109, 104, 165, 201, 221, 172, 162, 59, 90, 134, 252, 340, 249], mer: [60, 137, 65, 71, 123, 111, 108, 127, 107, 120, 97, 122, 100, 177, 212, 240, 162, 170, 71, 102, 155, 269, 360, 284], gio: [32, 76, 62, 60, 85, 77, 60, 104, 76, 99, 80, 88, 77, 140, 179, 189, 125, 122, 45, 71, 109, 199, 259, 206], ven: [83, 133, 80, 56, 75, 84, 82, 117, 98, 125, 91, 102, 94, 181, 228, 257, 182, 164, 68, 107, 163, 298, 355, 281] };
+        new Chart(document.getElementById('giorniAssolutiChart'), { type: 'line', data: { labels: YEARS, datasets: Object.keys(giorniData).map((g, i) => ({ label: g.charAt(0).toUpperCase() + g.slice(1), data: giorniData[g], borderColor: CHART_COLORS[i], backgroundColor: CHART_COLORS[i] + '80', fill: true })) }, options: defaultAreaOptions(true, false) });
+        const giorniPercentualiData = YEARS.map((_, i) => { const total = Object.values(giorniData).reduce((sum, day) => sum + day[i], 0); return total === 0 ? { lun: 0, mar: 0, mer: 0, gio: 0, ven: 0 } : { lun: (giorniData.lun[i] / total) * 100, mar: (giorniData.mar[i] / total) * 100, mer: (giorniData.mer[i] / total) * 100, gio: (giorniData.gio[i] / total) * 100, ven: (giorniData.ven[i] / total) * 100 }; });
+        new Chart(document.getElementById('giorniPercentualiChart'), { type: 'line', data: { labels: YEARS, datasets: Object.keys(giorniData).map((g, i) => ({ label: g.charAt(0).toUpperCase() + g.slice(1), data: giorniPercentualiData.map(d => d[g]), borderColor: CHART_COLORS[i], backgroundColor: CHART_COLORS[i] + '80', fill: true })) }, options: defaultAreaOptions(true, true) });
+
+        // --- CAP 2: DEMOGRAFIA ---
+        const genereData = { f: [34, 62, 44, 34, 55, 42, 34, 41, 44, 36, 26, 26, 32, 59, 94, 110, 87, 91, 44, 68, 127, 235, 290, 246], m: [263, 586, 341, 383, 506, 461, 419, 581, 475, 574, 475, 539, 473, 800, 994, 1076, 767, 725, 271, 412, 625, 1104, 1426, 1206] };
+        new Chart(document.getElementById('genereAssolutoChart'), { type: 'line', data: { labels: YEARS, datasets: [{ label: 'Donne', data: genereData.f, borderColor: CHART_COLORS[5], backgroundColor: CHART_COLORS[5] + '80', fill: true }, { label: 'Uomini', data: genereData.m, borderColor: CHART_COLORS[0], backgroundColor: CHART_COLORS[0] + '80', fill: true }] }, options: defaultAreaOptions(true, false) });
+        const generePercentualeData = YEARS.map((_, i) => { const total = genereData.f[i] + genereData.m[i]; return total === 0 ? { f: 0, m: 0 } : { f: (genereData.f[i] / total) * 100, m: (genereData.m[i] / total) * 100 }; });
+        new Chart(document.getElementById('generePercentualeChart'), { type: 'line', data: { labels: YEARS, datasets: [{ label: 'Donne', data: generePercentualeData.map(d => d.f), borderColor: CHART_COLORS[5], backgroundColor: CHART_COLORS[5] + '80', fill: true }, { label: 'Uomini', data: generePercentualeData.map(d => d.m), borderColor: CHART_COLORS[0], backgroundColor: CHART_COLORS[0] + '80', fill: true }] }, options: defaultAreaOptions(true, true) });
+        const etaAnnoData = [[10, 178, 93, 8, 0], [18, 424, 183, 7, 0], [17, 234, 122, 6, 1], [13, 296, 99, 4, 0], [5, 430, 114, 11, 1], [17, 348, 124, 4, 0], [11, 305, 121, 10, 2], [8, 446, 142, 18, 1], [15, 350, 137, 13, 0], [17, 375, 193, 20, 2], [8, 301, 173, 17, 1], [11, 348, 188, 14, 1], [10, 281, 191, 20, 1], [27, 513, 282, 29, 3], [37, 650, 360, 37, 2], [41, 696, 408, 38, 3], [32, 427, 351, 37, 4], [22, 367, 383, 40, 2], [7, 107, 177, 23, 2], [9, 159, 274, 35, 4], [16, 321, 370, 42, 3], [24, 620, 629, 61, 2], [35, 786, 788, 96, 5], [21, 626, 725, 75, 4]];
+        const etaPercentuale = etaAnnoData.map(row => { const total = row.reduce((s, c) => s + c, 1); return row.map(v => (v / total) * 100); });
+        new Chart(document.getElementById('etaEvoluzioneChart'), { type: 'bar', data: { labels: YEARS, datasets: [{ label: '18-30', data: etaPercentuale.map(r => r[1]), backgroundColor: CHART_COLORS[0] }, { label: '31-45', data: etaPercentuale.map(r => r[2]), backgroundColor: CHART_COLORS[1] }] }, options: { ...defaultBarOptions('x', true, true), interaction: { mode: 'index', intersect: false } } });
+        new Chart(document.getElementById('statoCivileChart'), { type: 'pie', data: { labels: ['Celibe/Nubile', 'Coniugato/a', 'Altro/Non Spec.'], datasets: [{ data: [11018, 4801, 1722], backgroundColor: [CHART_COLORS[0], CHART_COLORS[1], CHART_COLORS[6]] }] }, options: defaultPieOptions() });
+        new Chart(document.getElementById('figliChart'), { type: 'doughnut', data: { labels: ['0 Figli', '1 Figlio', '2 Figli', '3+ Figli'], datasets: [{ data: [11822, 1618, 1272, 2829], backgroundColor: [CHART_COLORS[0], CHART_COLORS[1], CHART_COLORS[3], CHART_COLORS[4]] }] }, options: defaultPieOptions() });
+
+        // --- CAP 3: ORIGINI ---
+        new Chart(document.getElementById('nazionalitaChart'), { type: 'bar', data: { labels: ['Perù', 'Nigeria', 'Egitto', 'Pakistan', 'Gambia', 'El Salvador', 'Mali', "Costa d'Avorio", 'Eritrea', 'Bangladesh'], datasets: [{ label: 'Utenti', data: [1770, 1288, 1178, 906, 875, 838, 797, 770, 751, 734], backgroundColor: CHART_COLORS[0] }] }, options: defaultBarOptions('y', false, false) });
+        const nazionalitaAnnoData = { 'Perù': [0,0,0,0,0,1,0,1,0,0,0,2,1,2,1,4,17,63,23,25,137,411,589,492], 'Egitto': [0,1,1,0,1,0,2,4,4,8,17,11,14,12,14,24,21,19,6,43,109,375,239,251], 'Nigeria': [7,35,21,21,96,82,55,50,33,48,42,41,48,50,104,143,108,91,35,69,47,26,19,16], 'El Salvador': [1,0,0,0,0,0,2,3,6,2,2,10,9,39,61,115,104,159,43,49,59,71,61,40], 'Pakistan': [0,1,0,2,6,9,40,44,34,28,31,31,33,92,93,52,47,62,26,52,70,42,55,54], 'Gambia': [3,16,21,11,29,30,34,98,52,33,18,16,31,66,110,96,68,43,25,18,17,21,8,10], 'Mali': [0,0,2,2,5,3,6,21,10,30,61,77,48,102,123,141,53,36,12,18,12,22,8,3], 'Costa d\'Avorio': [2,32,20,103,51,19,36,40,39,53,35,45,29,63,60,54,37,9,7,8,7,9,4,7], 'Eritrea': [50,105,89,55,103,82,23,62,44,18,12,11,26,22,14,11,3,5,1,2,0,6,6,1], 'Bangladesh': [1,5,5,4,15,33,24,18,20,48,33,53,39,60,54,39,39,19,18,21,26,25,67,68], 'Altro': [197,423,194,180,222,192,181,218,245,288,192,194,180,260,366,375,232,162,77,107,204,242,518,425] };
+        const nazionalitaPercentuali = YEARS.map((_, i) => { const total = Object.values(nazionalitaAnnoData).reduce((sum, n) => sum + n[i], 0); return total === 0 ? {} : Object.fromEntries(Object.keys(nazionalitaAnnoData).map(n => [n, (nazionalitaAnnoData[n][i] / total) * 100])) });
+        new Chart(document.getElementById('nazionalitaEvoluzionePercentualeChart'), { type: 'line', data: { labels: YEARS, datasets: Object.keys(nazionalitaAnnoData).map((n, i) => ({ label: n, data: nazionalitaPercentuali.map(d => d[n]), borderColor: CHART_COLORS[i % CHART_COLORS.length], backgroundColor: CHART_COLORS[i % CHART_COLORS.length] + '80', fill: true })) }, options: defaultAreaOptions(true, true) });
+        
+        // --- CAP 5: ISTRUZIONE ---
+        new Chart(document.getElementById('scolaritaChart'), { type: 'bar', data: { labels: ['Medie Sup.', 'Medie Inf.', 'Elementare', 'Analfabeta', 'Laurea', 'Non Spec.'], datasets: [{ data: [5860, 4084, 2899, 1588, 1551, 1559], backgroundColor: CHART_COLORS[1] }] }, options: defaultBarOptions('x', false, false) });
+        const scolaritaAnnoData = [[12,35,32,56,79,83], [61,148,30,121,238,50], [33,75,39,83,135,20], [77,73,38,83,138,8], [56,132,62,125,180,7], [55,108,54,98,176,12], [47,88,40,87,157,24], [56,92,45,102,213,114], [40,84,41,85,187,84], [37,86,50,96,214,128], [37,79,44,89,161,94], [31,76,36,84,203,136], [29,66,50,66,177,118], [58,103,75,137,276,211], [64,136,89,150,377,273], [75,138,94,182,452,246], [45,110,79,116,323,181], [53,95,89,109,305,167], [22,46,33,43,120,52], [30,75,57,51,199,69], [53,115,70,93,311,110], [103,184,121,173,569,189], [121,232,148,222,765,229], [100,166,119,166,693,209]];
+        const scolaritaPercentuale = scolaritaAnnoData.map(row => { const total = row.reduce((s, c) => s + c, 1); return row.map(v => (v / total) * 100); });
+        
+        // ********** SEZIONE CORRETTA **********
+        new Chart(document.getElementById('scolaritaEvoluzioneChart'), { type: 'line', data: { labels: YEARS, datasets: [
+                { label: 'Laurea', data: scolaritaPercentuale.map(r => r[2]), borderColor: CHART_COLORS[0], fill: false }, 
+                { label: 'Medie Sup.', data: scolaritaPercentuale.map(r => r[4]), borderColor: CHART_COLORS[1], fill: false }, 
+                { label: 'Analfabeta', data: scolaritaPercentuale.map(r => r[0]), borderColor: CHART_COLORS[2], fill: false }
+            ]}, options: defaultBarOptions('x', false, true)
+        });
+        // ********** FINE SEZIONE CORRETTA **********
+
+        // --- CAP 6: STATUS GIURIDICO ---
+        const statusPerNazioneData = { labels: ["Costa d'Avorio", 'Eritrea', 'Mali', 'Nigeria', 'Gambia', 'Pakistan', 'Bangladesh', 'El Salvador', 'Egitto', 'Perù'], datasets: [ { label: 'Titolare Protezione', data: [363, 373, 282, 179, 143, 120, 67, 17, 24, 8], backgroundColor: CHART_COLORS[1] }, { label: 'Richiedente Asilo', data: [244, 245, 275, 594, 405, 418, 378, 408, 437, 448], backgroundColor: CHART_COLORS[0] }, { label: 'Nessuna Domanda', data: [35, 18, 35, 114, 57, 114, 107, 240, 443, 927], backgroundColor: CHART_COLORS[2] }] };
+        new Chart(document.getElementById('statusPerNazioneChart'), { type: 'bar', data: statusPerNazioneData, options: defaultBarOptions('y', true) });
+        new Chart(document.getElementById('statusGiuridicoChart'), { type: 'doughnut', data: { labels: ['Richiedente Asilo', 'Titolare Protezione', 'Nessuna Domanda', 'Altro'], datasets: [{ data: [6886, 4608, 3957, 2071], backgroundColor: CHART_COLORS }] }, options: defaultPieOptions('right') });
+
+    });
+</script>
+</body>
+</html>
