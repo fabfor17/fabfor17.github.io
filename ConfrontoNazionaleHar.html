@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Richiedenti Asilo: Confronto Dati Nazionali e Naga Har (2023-2024)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .stat-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            text-align: center;
+            border-left: 5px solid #005BC0;
+        }
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #00449E;
+        }
+        .stat-label {
+            font-size: 1rem;
+            color: #4b5563;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-[#00449E] mb-2">Richiedenti Asilo in Italia</h1>
+            <p class="text-lg md:text-xl text-gray-600">Un confronto tra dati nazionali e l'esperienza del Centro Naga Har (2023-2024)</p>
+        </header>
+
+        <section id="overview" class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-8 text-[#005BC0]">Flussi a Confronto: Il Quadro Generale</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="stat-card">
+                    <p class="stat-number">135.820</p>
+                    <p class="stat-label">Domande di Asilo Nazionali (2023)</p>
+                </div>
+                <div class="stat-card">
+                    <p class="stat-number">158.605</p>
+                    <p class="stat-label">Domande di Asilo Nazionali (2024)</p>
+                </div>
+                <div class="stat-card">
+                    <p class="stat-number">1.198</p>
+                    <p class="stat-label">Primi Accessi Naga Har (2023)</p>
+                </div>
+                 <div class="stat-card">
+                    <p class="stat-number">1.331</p>
+                    <p class="stat-label">Primi Accessi Naga Har (2024)</p>
+                </div>
+            </div>
+            <p class="mt-8 text-center max-w-3xl mx-auto text-gray-700">
+                Il biennio 2023-2024 mostra un incremento delle domande di asilo a livello nazionale, una tendenza che si riflette, in scala, anche nei primi accessi al centro Naga Har. Questo parallelismo indica come le dinamiche globali impattino sia il sistema di accoglienza nazionale che le realtà locali, sebbene con volumi e caratteristiche differenti.
+            </p>
+        </section>
+
+        <section id="nationality" class="space-y-12">
+            <h2 class="text-3xl font-bold text-center mb-8 text-[#005BC0]">Nazionalità: Specchio o Distorsione?</h2>
+            
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-2xl font-bold text-center mb-2">Analisi Anno 2023</h3>
+                <p class="text-center mb-6 text-gray-600">Confronto tra le 5 principali nazionalità a livello nazionale e presso il Naga Har.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h4 class="text-xl font-bold text-center mb-4">Italia - Dati Nazionali</h4>
+                        <div class="chart-container">
+                            <canvas id="nationalData2023"></canvas>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold text-center mb-4">Milano - Naga Har</h4>
+                        <div class="chart-container">
+                            <canvas id="nagaData2023"></canvas>
+                        </div>
+                    </div>
+                </div>
+                 <div class="mt-6 p-4 bg-blue-50 rounded-lg border-l-4 border-[#0072E5]">
+                    <h5 class="font-bold text-[#005BC0]">Punti Chiave 2023</h5>
+                    <p class="text-gray-700">Nel 2023, i dati del Naga Har mostrano una realtà parzialmente diversa da quella nazionale. Emerge una fortissima presenza di cittadini provenienti da <strong class="text-[#00449E]">Egitto, Perù ed El Salvador</strong>, nazionalità meno rappresentate nella top 5 nazionale. Questo suggerisce l'esistenza di corridoi migratori specifici e reti sociali che indirizzano i flussi verso Milano, non completamente catturati dalle statistiche aggregate nazionali che vedono prevalere nazionalità dell'Africa subsahariana e del Bangladesh.</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-2xl font-bold text-center mb-2">Analisi Anno 2024</h3>
+                 <p class="text-center mb-6 text-gray-600">Il confronto si aggiorna al 2024, evidenziando nuove dinamiche e conferme.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                         <h4 class="text-xl font-bold text-center mb-4">Italia - Dati Nazionali</h4>
+                        <div class="chart-container">
+                            <canvas id="nationalData2024"></canvas>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold text-center mb-4">Milano - Naga Har</h4>
+                        <div class="chart-container">
+                            <canvas id="nagaData2024"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-6 p-4 bg-blue-50 rounded-lg border-l-4 border-[#0072E5]">
+                    <h5 class="font-bold text-[#005BC0]">Punti Chiave 2024</h5>
+                    <p class="text-gray-700">Il 2024 conferma e accentua le tendenze: la presenza di persone da <strong class="text-[#00449E]">Egitto e Perù</strong> al Naga Har diventa ancora più preponderante, distanziandosi ulteriormente dalla classifica nazionale. Mentre a livello italiano si consolida il peso di Bangladesh e Pakistan, l'osservatorio locale del Naga evidenzia l'importanza crescente dei flussi dall'America Latina e dal Nord Africa, probabilmente legati a crisi economiche e instabilità politica in quelle aree.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="conclusions" class="mt-12">
+            <h2 class="text-3xl font-bold text-center mb-8 text-[#005BC0]">Dal Macro al Micro: L'Importanza dei Dati Locali</h2>
+             <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-md p-8">
+                <p class="text-lg text-gray-700 leading-relaxed">
+                    L'analisi comparata tra i dati nazionali e quelli del Centro Naga Har rivela una lezione fondamentale: i fenomeni migratori non sono monolitici. Se le statistiche nazionali forniscono un quadro d'insieme indispensabile, sono gli osservatori locali a catturare la granularità e la complessità dei percorsi migratori.
+                </p>
+                <br>
+                <div class="mt-6 flex flex-col md:flex-row gap-6">
+                    <div class="flex-1 p-4 border rounded-lg bg-gray-50">
+                        <h4 class="font-bold text-xl mb-2 text-[#00449E]">Discrepanze Significative</h4>
+                        <p>La forte incidenza di nazionalità latinoamericane e nordafricane al Naga, a differenza del dato nazionale, sottolinea come le città come Milano fungano da poli di attrazione per specifici corridoi migratori, spesso invisibili nelle medie nazionali.</p>
+                    </div>
+                    <div class="flex-1 p-4 border rounded-lg bg-gray-50">
+                        <h4 class="font-bold text-xl mb-2 text-[#00449E]">Riflesso di Crisi Diverse</h4>
+                        <p>I dati locali sono un termometro più sensibile e reattivo delle crisi socio-economiche (America Latina) rispetto ai conflitti prolungati (Africa Subsahariana) che dominano le statistiche nazionali. Permettono di anticipare nuovi bisogni e di adattare i servizi di accoglienza in modo più mirato ed efficace.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+<script>
+const CHART_COLORS = {
+    blue: 'rgba(0, 114, 229, 0.7)',
+    lightblue: 'rgba(56, 144, 232, 0.7)',
+    skyblue: 'rgba(111, 173, 235, 0.7)',
+    darkblue: 'rgba(0, 68, 158, 0.7)',
+    navy: 'rgba(0, 31, 74, 0.7)',
+};
+
+const CHART_BORDERS = {
+    blue: 'rgb(0, 114, 229)',
+    lightblue: 'rgb(56, 144, 232)',
+    skyblue: 'rgb(111, 173, 235)',
+    darkblue: 'rgb(0, 68, 158)',
+    navy: 'rgb(0, 31, 74)',
+};
+
+function processLabel(label) {
+    if (label.length <= 16) {
+        return label;
+    }
+    const words = label.split(' ');
+    const lines = [];
+    let currentLine = '';
+    for (const word of words) {
+        if ((currentLine + word).length > 16) {
+            lines.push(currentLine.trim());
+            currentLine = '';
+        }
+        currentLine += word + ' ';
+    }
+    lines.push(currentLine.trim());
+    return lines.filter(line => line.length > 0);
+}
+
+const defaultChartOptions = {
+    maintainAspectRatio: false,
+    responsive: true,
+    scales: {
+        x: {
+            ticks: {
+                color: '#374151',
+            },
+            grid: {
+                display: false,
+            }
+        },
+        y: {
+            beginAtZero: true,
+            ticks: {
+                color: '#374151',
+            },
+            grid: {
+                color: '#e5e7eb',
+            }
+        }
+    },
+    plugins: {
+        legend: {
+            display: false
+        },
+        tooltip: {
+            backgroundColor: '#1f2937',
+            titleColor: '#ffffff',
+            bodyColor: '#ffffff',
+            callbacks: {
+                title: function(tooltipItems) {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    if (Array.isArray(label)) {
+                        return label.join(' ');
+                    } else {
+                        return label;
+                    }
+                }
+            }
+        }
+    }
+};
+
+const nagaData = {
+    "2023": [
+        { country: "Egitto", value: 375 },
+        { country: "Perù", value: 161 },
+        { country: "El Salvador", value: 145 },
+        { country: "Pakistan", value: 76 },
+        { country: "Marocco", value: 71 }
+    ],
+    "2024": [
+        { country: "Egitto", value: 239 },
+        { country: "Perù", value: 216 },
+        { country: "El Salvador", value: 151 },
+        { country: "Marocco", value: 112 },
+        { country: "Pakistan", value: 101 }
+    ]
+};
+
+const nationalData = {
+    "2023": [
+        { country: "Guinea", value: 18070 },
+        { country: "Costa d'Avorio", value: 15410 },
+        { country: "Bangladesh", value: 12050 },
+        { country: "Tunisia", value: 10450 },
+        { country: "Egitto", value: 9780 }
+    ],
+    "2024": [
+        { country: "Bangladesh", value: 24700 },
+        { country: "Guinea", value: 19880 },
+        { country: "Pakistan", value: 16100 },
+        { country: "Egitto", value: 15400 },
+        { country: "Tunisia", value: 12500 }
+    ]
+};
+
+
+window.onload = function() {
+    new Chart(document.getElementById('nationalData2023'), {
+        type: 'bar',
+        data: {
+            labels: nationalData["2023"].map(d => processLabel(d.country)),
+            datasets: [{
+                label: 'Domande di Asilo',
+                data: nationalData["2023"].map(d => d.value),
+                backgroundColor: Object.values(CHART_COLORS),
+                borderColor: Object.values(CHART_BORDERS),
+                borderWidth: 1
+            }]
+        },
+        options: defaultChartOptions
+    });
+
+    new Chart(document.getElementById('nagaData2023'), {
+        type: 'bar',
+        data: {
+            labels: nagaData["2023"].map(d => processLabel(d.country)),
+            datasets: [{
+                label: 'Primi Accessi',
+                data: nagaData["2023"].map(d => d.value),
+                backgroundColor: Object.values(CHART_COLORS),
+                borderColor: Object.values(CHART_BORDERS),
+                borderWidth: 1
+            }]
+        },
+        options: defaultChartOptions
+    });
+
+    new Chart(document.getElementById('nationalData2024'), {
+        type: 'bar',
+        data: {
+            labels: nationalData["2024"].map(d => processLabel(d.country)),
+            datasets: [{
+                label: 'Domande di Asilo',
+                data: nationalData["2024"].map(d => d.value),
+                backgroundColor: Object.values(CHART_COLORS),
+                borderColor: Object.values(CHART_BORDERS),
+                borderWidth: 1
+            }]
+        },
+        options: defaultChartOptions
+    });
+
+    new Chart(document.getElementById('nagaData2024'), {
+        type: 'bar',
+        data: {
+            labels: nagaData["2024"].map(d => processLabel(d.country)),
+            datasets: [{
+                label: 'Primi Accessi',
+                data: nagaData["2024"].map(d => d.value),
+                backgroundColor: Object.values(CHART_COLORS),
+                borderColor: Object.values(CHART_BORDERS),
+                borderWidth: 1
+            }]
+        },
+        options: defaultChartOptions
+    });
+};
+</script>
+</body>
+</html>
